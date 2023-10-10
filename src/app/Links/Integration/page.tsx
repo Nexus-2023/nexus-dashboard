@@ -3,7 +3,7 @@
 import Image from "next/image"
 import StyledButton from "@/components/button"
 import { Card } from "@/components/Card"
-import Table from "@/components/Table"
+import { IntegrationTable } from "@/components/Table"
 export default function Home() {
   return (
     <div className="  flex flex-col items-center justify-center space-y-12  w-[83vw] container mx-auto">
@@ -15,7 +15,7 @@ export default function Home() {
         <Card text={"Eth Staked "} numbers={3200} />
         <Card text={"Earnings (Eth)"} numbers={1000} />
       </div>
-      <Table />
+      <IntegrationTable />
     </div>
   )
 }

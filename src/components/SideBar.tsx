@@ -33,21 +33,21 @@ export function BasicAccordion() {
           </div>
         </AccordionSummary>
         <AccordionDetails className=" bg-secondary ">
-          <Link href={"./Polygon"}>
+          <Link href={"/Links/Polygon"}>
             <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
               {" "}
               Polygon zkEVM
             </h1>
           </Link>
 
-          <Link href={"./Mantle"}>
+          <Link href={"/Links/Mantle"}>
             <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
               {" "}
               Mantle
             </h1>
           </Link>
 
-          <Link href={"./Scroll"}>
+          <Link href={"/Links/Scroll"}>
             <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
               {" "}
               Scroll
