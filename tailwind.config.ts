@@ -17,6 +17,7 @@ const config: Config = {
       
         'primary': '#0375C9',
         'secondary': '#045192',
+        'inter' : '#126BB5',
       },
     },
   },

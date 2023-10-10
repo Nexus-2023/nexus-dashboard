@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import StyledButton from "@/components/button"
-
+import Link from "next/link"
 export default function Home() {
   return (
     <div className="  flex flex-col items-center justify-center space-y-12  w-[83vw] container mx-auto">
@@ -25,9 +25,11 @@ export default function Home() {
         ></iframe>
       </div>
 
-      <StyledButton borderColor="#0375C9" backgroundColor="#0375C9">
-        Register Rollup
-      </StyledButton>
+      <Link href={"/Links/RegisterRollup"}>
+        <StyledButton borderColor="#0375C9" backgroundColor="#0375C9">
+          Register Rollup
+        </StyledButton>
+      </Link>
     </div>
   )
 }
