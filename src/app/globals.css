@@ -12,7 +12,8 @@
 
 body {
   font-family: 'Work Sans', sans-serif;
-
+  padding: 0%;
+  box-sizing: border-box;
   
  
 }
