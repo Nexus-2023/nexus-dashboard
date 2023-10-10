@@ -1,21 +1,70 @@
 "use client"
 
 import Image from "next/image"
-import StyledButton from "@/components/button"
+import { StyledButton1, StyledButton2 } from "@/components/button"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
-
+import CssTextField from "@/components/TextField"
+import Link from "next/link"
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
 
   return (
-    <div className="  flex flex-col items-center justify-center space-y-12  w-[83vw] container mx-auto">
+    <div className="  flex flex-col items-center justify-center    w-[83vw] container mx-auto">
       {isConnected ? (
         <>
           <div className=" absolute top-5 right-5">
             <ConnectButton />
           </div>
-          <h1 className="text-[2.5rem] font-black ">Connected</h1>
+
+          <div className="border-[3px] border-black  h-[30rem] flex-col flex  mt-20 mr-8     rounded-[2rem] px-12 py-5">
+            {" "}
+            <h1 className="text-3xl font-black  text-black">
+              1. Set Rollup Parameters
+            </h1>
+            <div className=" flex-col flex mt-5 ">
+              <CssTextField
+                label="Address"
+                variant="outlined"
+                type="text"
+                value={"0x"}
+                // onChange={}
+              />
+              <p>Rollup Bridge Contract Address</p>
+            </div>
+            <div className=" flex-col flex mt-5 ">
+              <CssTextField
+                label="Address"
+                variant="outlined"
+                type="number"
+                value={0}
+                // onChange={}
+              />
+              <p>Staking Limit</p>
+            </div>
+            <div className=" flex-col flex mt-5 ">
+              <CssTextField
+                label="Address"
+                variant="outlined"
+                type="text"
+                value={"0x"}
+                // onChange={}
+              />
+              <p>Rollup Dao Contract Address</p>
+            </div>
+            <div className=" flex justify-center mt-6">
+              <Link href={"/Links/RegisterRollup"}>
+                <StyledButton2
+                  backgroundColor="white"
+                  hoverColor="white"
+                  color="#171515"
+                  AfterBackground="#171515"
+                >
+                  Next
+                </StyledButton2>
+              </Link>
+            </div>
+          </div>
         </>
       ) : (
         <>
