@@ -9,7 +9,7 @@ export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
 
   return (
-    <div className="  flex flex-col items-center justify-center space-y-12  w-[83vw] container mx-auto">
+    <div className="  flex flex-col items-center justify-center   w-[83vw] container mx-auto">
       {isConnected ? (
         <>
           <div className=" absolute top-5 right-5">
@@ -31,6 +31,7 @@ export default function Home() {
             width={200}
             height={200}
             alt="metamask logo"
+            className="mt-8 mb-8"
           />
           <ConnectButton />
         </>

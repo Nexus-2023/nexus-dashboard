@@ -80,6 +80,7 @@ export default function Home() {
             width={200}
             height={200}
             alt="metamask logo"
+            className="mt-8 mb-8"
           />
           <ConnectButton />
         </>
