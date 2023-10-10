@@ -20,17 +20,20 @@ table {
 
 table, th  {
   border: 2px solid var(--secondary);
-  padding: 8px 8px 8px 8px;
+  padding: 10px;
   text-align: center;
   
 }
 
+ 
 td {
-  border: 2px solid black;
-  padding: 8px 8px 8px 8px;
+  border: 3px solid white;
+  padding: 10px;
   text-align: center;
   font-weight: 700;
-  color: black;
+  
+  background-color: var(--primary);
+  color: white;
 }
 
 th {
