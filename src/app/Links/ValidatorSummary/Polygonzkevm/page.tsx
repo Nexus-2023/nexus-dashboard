@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import StyledButton from "@/components/button"
+import { StyledButton1, StyledButton2 } from "@/components/button"
 import { PolygonTable1, PolygonTable2 } from "@/components/Table"
 import { Card } from "@/components/Card"
 export default function Home() {

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import StyledButton from "@/components/button"
+import { StyledButton1, StyledButton2 } from "@/components/button"
 
 export default function Home() {
   return (
