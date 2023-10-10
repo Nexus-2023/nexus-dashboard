@@ -43,7 +43,7 @@ const IntegrationTable = () => {
 
 const PolygonTable1 = () => {
   return (
-    <div className="flex items-center text-white font-medium px-4 py-4 text-2xl   ">
+    <div className="flex items-center text-white font-medium px-4 py-4 text-lg   ">
       <div className=" bg-inter h-32 justify-center items-center flex p-4  ">
         <p>Layer 2 Parameters</p>
       </div>
