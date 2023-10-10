@@ -6,7 +6,7 @@ import { Button, IconButton, SvgIcon } from "@mui/material"
 
 export const SideBar = () => {
   return (
-    <div className="bg-[#0375C9] text-white relative  font-semibold w-72 h-[100vh] flex-col flex   items-center">
+    <div className="bg-primary text-white relative  font-semibold   min-w-full  w-64  h-[100vh] min-h-full flex-col flex   items-center">
       <div>
         <Image
           src="/Images/Nexeslogo.png"
@@ -19,33 +19,33 @@ export const SideBar = () => {
 
       <div className="space-y-8  flex flex-col mt-8 ">
         <Link href={"./"}>
-          <h1 className="text-md   px-4 py-2 hover:text-[#0375C9] hover:bg-white ease-in-out duration-300 rounded-md">
+          <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
             {" "}
             Registere Rollups
           </h1>
         </Link>
 
         <Link href={"./"}>
-          <h1 className="text-md  px-4 py-2 hover:text-[#0375C9] hover:bg-white ease-in-out duration-300 rounded-md">
+          <h1 className="text-md  px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
             {" "}
             Admin View
           </h1>
         </Link>
 
         <Link href={"./"}>
-          <h1 className="text-md   px-4 py-2 hover:text-[#0375C9] hover:bg-white ease-in-out duration-300 rounded-md">
+          <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
             {" "}
             Integration Summary
           </h1>
         </Link>
         <Link href={"./"}>
-          <h1 className="text-md   px-4 py-2 hover:text-[#0375C9] hover:bg-white ease-in-out duration-300 rounded-md">
+          <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
             {" "}
             Partner Networks
           </h1>
         </Link>
       </div>
-      <div className="space-x-4  flex  bottom-10 left-16  absolute  ">
+      <div className="space-x-4  flex  -ml-5 mt-[11rem] ">
         <div className="hover:scale-125  ease-in-out duration-300">
           <Link href={"./"}>
             <TwitterIcon sx={{ fontSize: 30 }} />
