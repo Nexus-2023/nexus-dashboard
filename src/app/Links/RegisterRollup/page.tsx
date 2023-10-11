@@ -53,12 +53,13 @@ export default function Home() {
               <p>Rollup Dao Contract Address</p>
             </div>
             <div className=" flex justify-center mt-6">
-              <Link href={"/Links/RegisterRollup"}>
+              <Link href={"/Links/RegisterRollup/form"}>
                 <StyledButton2
                   backgroundColor="white"
                   hoverColor="white"
                   color="#171515"
                   AfterBackground="#171515"
+                  width="7rem"
                 >
                   Next
                 </StyledButton2>

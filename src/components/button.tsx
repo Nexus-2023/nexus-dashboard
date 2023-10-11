@@ -10,6 +10,7 @@ interface ButtonProps2 {
   hoverColor: string
   color: string
   AfterBackground: string
+  width: string
 }
 
 const StyledButton1 = styled.button<ButtonProps>`
@@ -61,7 +62,10 @@ const StyledButton1 = styled.button<ButtonProps>`
 `
 
 const StyledButton2 = styled.button<ButtonProps2>`
-  width: 6.5em;
+  width: ${({ width }) => width || "4.5rem"};
+  padding-left: 4px;
+  padding-right: 4px;
+
   height: 2.3em;
   margin: 0.5em;
   background: ${({ backgroundColor }) => backgroundColor || "black"};
