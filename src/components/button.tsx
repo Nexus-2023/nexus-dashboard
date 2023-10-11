@@ -5,7 +5,15 @@ interface ButtonProps {
   backgroundColor: string
 }
 
-const StyledButton = styled.button<ButtonProps>`
+interface ButtonProps2 {
+  backgroundColor: string
+  hoverColor: string
+  color: string
+  AfterBackground: string
+  width: string
+}
+
+const StyledButton1 = styled.button<ButtonProps>`
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -53,4 +61,53 @@ const StyledButton = styled.button<ButtonProps>`
   }
 `
 
-export default StyledButton
+const StyledButton2 = styled.button<ButtonProps2>`
+  width: ${({ width }) => width || "4.5rem"};
+  padding-left: 4px;
+  padding-right: 4px;
+
+  height: 2.3em;
+  margin: 0.5em;
+  background: ${({ backgroundColor }) => backgroundColor || "black"};
+  border: 2px solid #171515;
+  color: ${({ color }) => color || "white"};
+
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  &:hover {
+    color: ${({ hoverColor }) => hoverColor || "black"};
+  }
+
+  &:after {
+    content: "";
+    background: ${({ AfterBackground }) => AfterBackground || "white"};
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+  }
+
+  &:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    transition: all 0.5s;
+  }
+`
+
+// StyledButton2.defaultProps = {
+//   color: "white",
+//   AfterBackground: "white",
+//   backgroundColor: "black",
+//   hoverColor: "black",
+// }
+
+export { StyledButton1, StyledButton2 }

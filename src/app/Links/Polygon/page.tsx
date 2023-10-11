@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import StyledButton from "@/components/button"
+import { StyledButton1, StyledButton2 } from "@/components/button"
 import { PolygonTable1, PolygonTable2 } from "@/components/Table"
 export default function Home() {
   return (
@@ -14,9 +14,9 @@ export default function Home() {
       <PolygonTable2 />
 
       <Link href={"/Links/ValidatorSummary/Polygonzkevm"}>
-        <StyledButton borderColor="#045192" backgroundColor="#045192">
+        <StyledButton1 borderColor="#045192" backgroundColor="#045192">
           Validator Summary
-        </StyledButton>
+        </StyledButton1>
       </Link>
     </div>
   )

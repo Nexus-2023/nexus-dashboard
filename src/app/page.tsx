@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import StyledButton from "@/components/button"
+import { StyledButton1, StyledButton2 } from "@/components/button"
 import Link from "next/link"
 export default function Home() {
   return (
@@ -26,9 +26,9 @@ export default function Home() {
       </div>
 
       <Link href={"/Links/RegisterRollup"}>
-        <StyledButton borderColor="#0375C9" backgroundColor="#0375C9">
+        <StyledButton1 borderColor="#0375C9" backgroundColor="#0375C9">
           Register Rollup
-        </StyledButton>
+        </StyledButton1>
       </Link>
     </div>
   )

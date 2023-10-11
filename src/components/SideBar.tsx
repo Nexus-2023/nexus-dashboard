@@ -19,11 +19,18 @@ import {
 export function BasicAccordion() {
   return (
     <div>
-      <Accordion className=" bg-primary text-white  shadow-none font-bold    ">
+      <Accordion
+        sx={{
+          color: "white",
+          background: "#0375C9",
+          boxShadow: "none",
+          fontWeight: "700",
+        }}
+      >
         <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
           <div className="flex items-center px-3 py-2 -mt-3 -ml-3 text-white justify-center hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
             <div className="">
-              <Typography className="font-bold    ">
+              <Typography sx={{ fontWeight: "700" }}>
                 Partner Networks
               </Typography>
             </div>
@@ -32,7 +39,11 @@ export function BasicAccordion() {
             </div>
           </div>
         </AccordionSummary>
-        <AccordionDetails className=" bg-secondary ">
+        <AccordionDetails
+          sx={{
+            background: "#045192",
+          }}
+        >
           <Link href={"/Links/Polygon"}>
             <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
               {" "}
