@@ -1,16 +1,16 @@
 export default function NotFound() {
   return (
     // absolute top-[10rem] left-[25rem] -mt-[18rem]
-    <div className="flex justify-center flex-col items-center     w-[75rem]     h-[100vh]">
+    <div className="flex justify-center flex-col items-center   w-[100vw]     h-[100vh]">
       <div
-        className="flex  -mt-[19rem] items-center justify-center mr-[5rem]   w-full  
+        className="flex   items-center justify-center    w-full   
        "
       >
-        <h1 className="text-5xl font-black text-center  text-black ">
+        <h1 className="text-5xl font-black text-center -mt-[18rem]  mr-[15rem]   text-black ">
           404 - Page Not Found
         </h1>
       </div>
-      <div className="  flex  ">
+      <div className="  flex   items-center justify-center    relative   w-full  ">
         <div className="vader   ">
           <div className="shadow"></div>
           <div className="head">

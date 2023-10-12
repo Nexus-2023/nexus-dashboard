@@ -1,5 +1,6 @@
 "use client"
 
+ 
 import Image from "next/image"
 import { StyledButton1, StyledButton2 } from "@/components/button"
 import Link from "next/link"
