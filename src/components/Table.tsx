@@ -65,29 +65,31 @@ const PolygonTable1 = () => {
 
 const PolygonTable2 = () => {
   return (
-    <div className="flex items-center text-white font-medium px-4 py-4 text-xl    text-center w-8/12">
-      <div className=" bg-inter w-1/2 h-64 justify-center text-lg items-center flex px-4  text-left">
-        <p>Nexus Network Parameters</p>
-      </div>
-
-      <div className="flex flex-col bg-primary space-y-4  h-64   border-b-white  w-full   ">
-        <div className="border-b-2 py-2 px-4 mt-3">ETH Staked</div>
-        <div className="border-b-2 py-2 px-4 mt-3  ">
-          Number of Active Validators
+    <>
+      <div className="flex   text-white font-medium px-4 py-4 text-xl  w-full  text-center  ">
+        <div className=" bg-inter w-1/2 h-64 justify-center text-lg items-center flex px-4  text-left">
+          <p>Nexus Network Parameters</p>
         </div>
-        <div className="border-b-2 py-2 px-4 mt-3">
-          Earnings till date (ETH)
-        </div>
-        <div className=" py-2 px-4 ">Effective APR %</div>
-      </div>
 
-      <div className="flex flex-col bg-primary space-y-4  w-full   h-64 ">
-        <div className="border-b-2 py-2 px-4 mt-3">8,000</div>
-        <div className="border-b-2 py-2 px-4 mt-3">260</div>
-        <div className="border-b-2 py-2 px-4 mt-3">230</div>
-        <div className="  py-2 px-4 ">4.81%</div>
+        <div className="flex flex-col bg-primary space-y-4  h-64   border-b-white  w-full   ">
+          <div className="border-b-2 py-2 px-4 mt-3">ETH Staked</div>
+          <div className="border-b-2 py-2 px-4 mt-3  ">
+            Number of Active Validators
+          </div>
+          <div className="border-b-2 py-2 px-4 mt-3">
+            Earnings till date (ETH)
+          </div>
+          <div className=" py-2 px-4 ">Effective APR %</div>
+        </div>
+
+        <div className="flex flex-col bg-primary space-y-4  w-full   h-64 ">
+          <div className="border-b-2 py-2 px-4 mt-3">8,000</div>
+          <div className="border-b-2 py-2 px-4 mt-3">260</div>
+          <div className="border-b-2 py-2 px-4 mt-3">230</div>
+          <div className="  py-2 px-4 ">4.81%</div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

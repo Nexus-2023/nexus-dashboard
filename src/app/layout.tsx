@@ -22,6 +22,9 @@ import {
   filecoin,
   base,
   zora,
+  scrollTestnet,
+  polygonZkEvm,
+  mantleTestnet,
 } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
@@ -40,13 +43,15 @@ const defaultChains = [
     iconUrl: "https://i.imgur.com/oo7FPwT.png",
   },
 
-  {
-    ...filecoinHyperspace,
-    iconUrl: "https://i.imgur.com/oo7FPwT.png",
-  },
+  // {
+  //   ...filecoinHyperspace,
+  //   iconUrl: "https://i.imgur.com/oo7FPwT.png",
+  // },
 
+  { ...scrollTestnet },
+  { ...mantleTestnet },
   {
-    ...polygon,
+    ...polygonZkEvm,
   },
   { ...optimism },
 

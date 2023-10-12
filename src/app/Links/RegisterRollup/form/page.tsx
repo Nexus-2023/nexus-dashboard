@@ -13,10 +13,11 @@ import RadioGroup from "@mui/material/RadioGroup"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import FormControl from "@mui/material/FormControl"
 import FormLabel from "@mui/material/FormLabel"
+import { useRef, useEffect } from "react"
+import anime from "animejs/lib/anime.es.js"
 
 export function ControlledRadioButtonsGroup() {
   const [value, setValue] = React.useState("Automatic")
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value)
   }
@@ -54,7 +55,17 @@ export function ControlledRadioButtonsGroup() {
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
-
+  const elementsRef = useRef<(HTMLDivElement | null)[]>([])
+  if (elementsRef.current) {
+    const targets = elementsRef.current.filter(element => element)
+    anime.timeline({ loop: false }).add({
+      targets: targets,
+      translateY: [-20, 0],
+      opacity: [0, 1],
+      duration: 1500,
+      delay: anime.stagger(250, { easing: "easeOutSine" }),
+    })
+  }
   return (
     <div className="  flex flex-col items-center justify-center    w-[83vw] container mx-auto">
       {isConnected ? (
@@ -63,19 +74,27 @@ export default function Home() {
             <ConnectButton />
           </div>
 
-          <div className="border-[3px] border-black   h-[20rem] flex-col flex  mt-[8rem] mr-8     rounded-[2rem] px-12 py-5">
+          <div
+            className="border-[3px] border-black   h-[20rem] flex-col flex  mt-[8rem] mr-8     rounded-[2rem] px-12 py-5"
+            ref={el => (elementsRef.current[0] = el)}
+          >
             {" "}
             <div className="flex flex-row space-x-4 items-center">
-              <Link href={"/Links/RegisterRollup"}>
-                <ArrowBackIosIcon />
-              </Link>
-              <div>
+              <div ref={el => (elementsRef.current[1] = el)}>
+                <Link href={"/Links/RegisterRollup"}>
+                  <ArrowBackIosIcon />
+                </Link>
+              </div>
+              <div ref={el => (elementsRef.current[2] = el)}>
                 <h1 className="text-3xl font-black  text-black">
                   2. Select Operators
                 </h1>
               </div>
             </div>
-            <div className=" flex-row flex mt-8 ">
+            <div
+              className=" flex-row flex mt-8 "
+              ref={el => (elementsRef.current[3] = el)}
+            >
               <div className="radio-buttons">
                 <label className="radio-button">
                   <input type="radio" name="option" value="Automatic" />
@@ -89,7 +108,10 @@ export default function Home() {
                 </label>
               </div>
             </div>
-            <div className=" flex justify-center mt-6">
+            <div
+              className=" flex justify-center mt-6"
+              ref={el => (elementsRef.current[4] = el)}
+            >
               <Link href={"/Links/RegisterRollup/form"}>
                 <StyledButton2
                   backgroundColor="white"
