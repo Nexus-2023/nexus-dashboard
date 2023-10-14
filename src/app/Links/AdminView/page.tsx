@@ -29,16 +29,18 @@ export default function Home() {
       })
     }
   }, [isConnected])
-  if (elementsRef.current) {
-    const targets = elementsRef.current.filter(element => element)
-    anime.timeline({ loop: false }).add({
-      targets: targets,
-      translateY: [-20, 0],
-      opacity: [0, 1],
-      duration: 1500,
-      delay: anime.stagger(250, { easing: "easeOutSine" }),
-    })
-  }
+  useEffect(() => {
+    if (elementsRef.current) {
+      const targets = elementsRef.current.filter(element => element)
+      anime.timeline({ loop: false }).add({
+        targets: targets,
+        translateY: [-20, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        delay: anime.stagger(250, { easing: "easeOutSine" }),
+      })
+    }
+  }, [])
 
   return (
     <div className="  flex flex-col items-center justify-center   w-[83vw] container mx-auto">
