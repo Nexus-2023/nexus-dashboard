@@ -2,7 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+```
+git clone https://github.com/Nexus-2023/nexus-dashboard.git
+cd nexus-dashboard
+npm run dev
+```
+ 
 
 ```bash
 npm run dev
