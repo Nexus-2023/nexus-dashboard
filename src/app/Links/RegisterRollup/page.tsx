@@ -9,18 +9,17 @@ import Link from "next/link"
 import { useRef, useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 import Box from "@mui/material/Box"
-import TextField from "@mui/material/TextField"
+
 import MenuItem from "@mui/material/MenuItem"
 import { ThemeProvider } from "@mui/material"
 import { theme } from "@/theme/theme"
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
+
 import { connectNexus } from "@/utils/connectContract"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
 
 import InputLabel from "@mui/material/InputLabel"
 
 import FormControl from "@mui/material/FormControl"
-import { ethers } from "ethers"
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
