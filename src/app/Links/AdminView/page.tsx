@@ -80,10 +80,7 @@ export default function Home() {
 
           <div ref={el => (elementsRef.current[3] = el)} className=" ">
             <Link href={"/Links/RegisterRollup"}>
-              <div
-                ref={el => (elementsRef.current[4] = el)}
-                className="opacity-0"
-              >
+              <div ref={el => (elementsRef.current[4] = el)} className=" ">
                 <StyledButton1 borderColor="#0375C9" backgroundColor="#0375C9">
                   Register Rollup
                 </StyledButton1>

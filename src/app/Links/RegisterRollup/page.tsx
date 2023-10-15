@@ -128,7 +128,10 @@ export default function Home() {
     const addressbridgeContract = rollupBridgeAddress
 
     const operatorClusterID = Number(clusterID)
-    const StakingLimit = stakingLimit
+    const StakingLimit = Number(stakingLimit)
+    console.log("addressbridgeContract", addressbridgeContract)
+    console.log("StakingLimit", StakingLimit)
+    console.log("operatorClusterID ", operatorClusterID)
 
     try {
       if (nexusContract) {
@@ -136,7 +139,7 @@ export default function Home() {
           addressbridgeContract,
           operatorClusterID,
           StakingLimit,
-          { gasLimit: 220000 }
+          { gasLimit: 2200000 }
         )
         let wait1 = await txn1.wait()
         console.log("Minting...", txn1.hash)
