@@ -134,8 +134,8 @@ export default function Home() {
       if (nexusContract) {
         const txn1 = await nexusContract.registerRollup(
           addressbridgeContract,
-          1,
-          1,
+          operatorClusterID,
+          StakingLimit,
           { gasLimit: 220000 }
         )
         let wait1 = await txn1.wait()
