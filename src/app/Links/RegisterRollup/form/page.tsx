@@ -16,42 +16,42 @@ import FormLabel from "@mui/material/FormLabel"
 import { useRef, useEffect } from "react"
 import anime from "animejs/lib/anime.es.js"
 
-export function ControlledRadioButtonsGroup() {
-  const [value, setValue] = React.useState("Automatic")
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value)
-  }
+// export function ControlledRadioButtonsGroup() {
+//   const [value, setValue] = React.useState("Automatic")
+//   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     setValue((event.target as HTMLInputElement).value)
+//   }
 
-  return (
-    <FormControl>
-      <RadioGroup
-        aria-labelledby="demo-controlled-radio-buttons-group"
-        name="controlled-radio-buttons-group"
-        value={value}
-        onChange={handleChange}
-      >
-        <FormControlLabel
-          value="Automatic"
-          control={<Radio />}
-          label="Automatic"
-          sx={{
-            fontSize: "5rem",
-            fontWeight: "600",
-          }}
-        />
-        <FormControlLabel
-          sx={{
-            fontSize: "5rem",
-            fontWeight: "600",
-          }}
-          value="Manual"
-          control={<Radio />}
-          label="Manual"
-        />
-      </RadioGroup>
-    </FormControl>
-  )
-}
+//   return (
+//     <FormControl>
+//       <RadioGroup
+//         aria-labelledby="demo-controlled-radio-buttons-group"
+//         name="controlled-radio-buttons-group"
+//         value={value}
+//         onChange={handleChange}
+//       >
+//         <FormControlLabel
+//           value="Automatic"
+//           control={<Radio />}
+//           label="Automatic"
+//           sx={{
+//             fontSize: "5rem",
+//             fontWeight: "600",
+//           }}
+//         />
+//         <FormControlLabel
+//           sx={{
+//             fontSize: "5rem",
+//             fontWeight: "600",
+//           }}
+//           value="Manual"
+//           control={<Radio />}
+//           label="Manual"
+//         />
+//       </RadioGroup>
+//     </FormControl>
+//   )
+// }
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
