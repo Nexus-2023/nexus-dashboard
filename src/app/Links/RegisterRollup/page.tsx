@@ -16,90 +16,11 @@ import { theme } from "@/theme/theme"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import { connectNexus } from "@/utils/connectContract"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
-import { BasicSelect } from "@/components/SelectField"
+
 import InputLabel from "@mui/material/InputLabel"
 
 import FormControl from "@mui/material/FormControl"
 import { ethers } from "ethers"
-
-export function SelectTextFields() {
-  const optionss = [
-    {
-      value: 1,
-      label: "1",
-    },
-    {
-      value: 2,
-      label: "2",
-    },
-    {
-      value: 3,
-      label: "3",
-    },
-    {
-      value: 4,
-      label: "4",
-    },
-    {
-      value: 5,
-      label: "5",
-    },
-  ]
-  const [selectedOption, setSelectedOption] = useState(1)
-
-  const handleOptionChange = (event: any) => {
-    setSelectedOption(event.target.value)
-    console.log("selectedOption ", selectedOption)
-  }
-
-  return (
-    <ThemeProvider theme={theme}>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              transition: "all 0.3s ease-in-out",
-              borderColor: "#000000",
-            },
-
-            "&.Mui-focused fieldset": {
-              transition: "all 0.3s ease-in-out",
-              color: theme.palette.primary.main,
-              border: "1px solid",
-            },
-          },
-          "& .MuiTextField-root": {
-            width: "23vw",
-            color: "#000000",
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            id="outlined-select-currency"
-            select
-            label="ID"
-            onChange={handleOptionChange}
-            SelectProps={{
-              IconComponent: ({ className }) => (
-                <ArrowDropDownIcon className={className} style={{}} />
-              ),
-            }}
-          >
-            {optionss.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-      </Box>
-    </ThemeProvider>
-  )
-}
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
