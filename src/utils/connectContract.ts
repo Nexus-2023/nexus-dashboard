@@ -26,7 +26,8 @@ declare global {
 
 export async function connectNexus() {
  
-  const nexusABI: any = NexusAbiJson as  any ;
+  // const nexusABI: any = NexusAbiJson as  any ;
+  const { abi: nexusABI} = NexusAbiJson 
   let nexusContract;
   try {
     const { ethereum } = window;
@@ -36,12 +37,13 @@ export async function connectNexus() {
       // const provider = new ethers.providers.Web3Provider(ethereum);
       // const provider = new ethers.providers.JsonRpcProvider();
       const provider = new ethers.BrowserProvider(ethereum);
-      const signer = provider.getSigner();
-      const providerSigner = signer as any;
+      // const signer = provider.getSigner();
+      const signer = await provider.getSigner();
+      // const providerSigner = signer as any;
       nexusContract = new ethers.Contract(
         NexusAddress,
-        nexusABI,
-        providerSigner
+        nexusABI as any,
+        signer
       ); // instantiating new connection to the contract
     } else {
       console.log("Ethereum object doesn't exist!");

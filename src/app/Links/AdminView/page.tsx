@@ -6,7 +6,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useAccount } from "wagmi"
 import anime from "animejs/lib/anime.es.js"
 import { useRef, useEffect } from "react"
-
+import Link from "next/link"
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
@@ -52,7 +52,44 @@ export default function Home() {
           >
             <ConnectButton />
           </div>
-          <h1 className="text-[2.5rem] font-black ">Admin page</h1>
+
+          <div className="  flex flex-col w-full items-center justify-center mt-[6rem] space-y-8">
+            <h1
+              className="text-5xl font-black  "
+              ref={el => (elementsRef.current[0] = el)}
+            >
+              No rollups registered
+            </h1>
+            <h1
+              className="text-lg font-light mt-4 "
+              ref={el => (elementsRef.current[1] = el)}
+            >
+              register rollups to get started
+            </h1>
+          </div>
+
+          <div ref={el => (elementsRef.current[2] = el)} className="">
+            <Image
+              src={"/Images/rollup.svg"}
+              width={350}
+              height={350}
+              alt="Rollup image"
+              className="mt-8 mb-8"
+            />
+          </div>
+
+          <div ref={el => (elementsRef.current[3] = el)} className=" ">
+            <Link href={"/Links/RegisterRollup"}>
+              <div
+                ref={el => (elementsRef.current[4] = el)}
+                className="opacity-0"
+              >
+                <StyledButton1 borderColor="#0375C9" backgroundColor="#0375C9">
+                  Register Rollup
+                </StyledButton1>
+              </div>
+            </Link>
+          </div>
         </>
       ) : (
         <>

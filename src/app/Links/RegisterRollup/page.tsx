@@ -107,6 +107,8 @@ export default function Home() {
   const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
   const [rollupBridgeAddress, setrollupBridgeAddress] = useState("")
   const [stakingLimit, setstakingLimit] = useState(0)
+  const [clusterID, setclusterID] = useState("1")
+  console.log("clusterID", clusterID)
 
   const handleRollupBridgeAddress = (e: any) => {
     setrollupBridgeAddress(e.target.value)
@@ -115,8 +117,6 @@ export default function Home() {
     setstakingLimit(e.target.value)
   }
 
-  const [clusterID, setclusterID] = useState("1")
-  console.log("clusterID", clusterID)
   const handleChange = (event: SelectChangeEvent) => {
     setclusterID(event.target.value as string)
   }
@@ -125,19 +125,23 @@ export default function Home() {
     event.preventDefault()
 
     const nexusContract = await connectNexus()
-    const addressbridgeContract = ""
+    const addressbridgeContract = rollupBridgeAddress
 
-    const operatorClusterID = 0
-    const stakingLimit = 0
+    const operatorClusterID = Number(clusterID)
+    const StakingLimit = stakingLimit
 
     try {
       if (nexusContract) {
-        const txn = await nexusContract.registerRollup(
+        const txn1 = await nexusContract.registerRollup(
           addressbridgeContract,
-          operatorClusterID,
-          stakingLimit,
-          { gasLimit: 22000000 }
+          1,
+          1,
+          { gasLimit: 220000 }
         )
+        let wait1 = await txn1.wait()
+        console.log("Minting...", txn1.hash)
+
+        console.log("Minted -- ", txn1.hash)
       }
     } catch (e) {
       console.log("error :" + e)
@@ -212,7 +216,7 @@ export default function Home() {
               ref={el => (elementsWalletRef.current[4] = el)}
             >
               <CssTextField
-                label="Address"
+                label="Number"
                 variant="outlined"
                 type="number"
                 value={stakingLimit}
