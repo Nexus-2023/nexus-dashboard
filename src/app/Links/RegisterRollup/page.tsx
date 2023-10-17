@@ -9,37 +9,42 @@ import Link from "next/link"
 import { useRef, useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 import Box from "@mui/material/Box"
-
+import Alert from "@mui/material/Alert"
 import MenuItem from "@mui/material/MenuItem"
 import { ThemeProvider } from "@mui/material"
 import { theme } from "@/theme/theme"
-
+import MuiAlert, { AlertProps } from "@mui/material/Alert"
 import { connectNexus } from "@/utils/connectContract"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
-
-import InputLabel from "@mui/material/InputLabel"
-
+import Snackbar from "@mui/material/Snackbar"
 import FormControl from "@mui/material/FormControl"
+import { useRouter, useParams } from "next/navigation"
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
+  const [snackbarOpen, setSnackbarOpen] = useState(false)
+  const [txnSucceeded, settxnSucceeded] = useState(false)
+  const [snackbarMessage, setSnackbarMessage] = useState("")
+
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
   const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
   const [rollupBridgeAddress, setrollupBridgeAddress] = useState("")
-  const [stakingLimit, setstakingLimit] = useState(0)
-  const [clusterID, setclusterID] = useState("1")
-  console.log("clusterID", clusterID)
-
+  const [rollupName, setrollupName] = useState("")
+  const router = useRouter()
+  const params = useParams()
   const handleRollupBridgeAddress = (e: any) => {
     setrollupBridgeAddress(e.target.value)
   }
-  const handlestakingLimit = (e: any) => {
-    setstakingLimit(e.target.value)
+  const handlerollupName = (e: any) => {
+    setrollupName(e.target.value)
+  }
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false)
+  }
+  const navigateToNextPage = () => {
+    router.push(`/Links/RegisterRollup/${rollupBridgeAddress}`)
   }
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setclusterID(event.target.value as string)
-  }
   async function handleSubmit2(event: any) {
     console.log("confirm button clicked")
     event.preventDefault()
@@ -47,27 +52,35 @@ export default function Home() {
     const nexusContract = await connectNexus()
     const addressbridgeContract = rollupBridgeAddress
 
-    const operatorClusterID = Number(clusterID)
-    const StakingLimit = Number(stakingLimit)
     console.log("addressbridgeContract", addressbridgeContract)
-    console.log("StakingLimit", StakingLimit)
-    console.log("operatorClusterID ", operatorClusterID)
+    console.log("rollupName", rollupName)
 
     try {
       if (nexusContract) {
-        const txn1 = await nexusContract.registerRollup(
+        const txn = await nexusContract.whitelistRollup(
+          rollupName,
           addressbridgeContract,
-          operatorClusterID,
-          StakingLimit,
+
           { gasLimit: 2200000 }
         )
-        let wait1 = await txn1.wait()
-        console.log("Minting...", txn1.hash)
+        await txn.wait()
+        console.log("Transaction succeeded:", txn.hash)
+        console.log("Minting...", txn.hash)
+        setSnackbarOpen(true)
+        setSnackbarMessage("Transaction succeeded!")
+        console.log("Minted -- ", txn.hash)
+        // router.push({
+        //   pathname: "/Links/RegisterRollup/form",
+        //   query: { rollupName, addressbridgeContract },
+        // })
 
-        console.log("Minted -- ", txn1.hash)
+        // router.push(`/Links/RegisterRollup/form${newChatId}`)
+        router.push(`/Links/RegisterRollup/${rollupBridgeAddress}`)
       }
     } catch (e) {
-      console.log("error :" + e)
+      console.error("Transaction failed:", e)
+      setSnackbarMessage("Transaction failed. Please try again.")
+      setSnackbarOpen(true)
     }
   }
 
@@ -110,105 +123,95 @@ export default function Home() {
             <ConnectButton />
           </div>
 
-          <div
-            className="border-[3px] border-black  h-[30rem] flex-col flex  mt-20 mr-8    opacity-0  rounded-[2rem] px-12 py-5"
-            ref={el => (elementsWalletRef.current[1] = el)}
-          >
-            {" "}
-            <h1
-              className="text-3xl font-black  opacity-0 text-black"
-              ref={el => (elementsWalletRef.current[2] = el)}
-            >
-              1. Set Rollup Parameters
-            </h1>
+          {/* mt-20 mr-8  */}
+          <div className="h-[100vh] flex   justify-center items-center">
             <div
-              className=" flex-col flex mt-5  opacity-0"
-              ref={el => (elementsWalletRef.current[3] = el)}
+              className="border-[3px] border-black  h-[25rem] flex-col flex   opacity-0  rounded-[2rem] px-12 py-5"
+              ref={el => (elementsWalletRef.current[1] = el)}
             >
-              <CssTextField
-                label="Address"
-                variant="outlined"
-                type="text"
-                value={rollupBridgeAddress}
-                onChange={handleRollupBridgeAddress}
-              />
-              <p>Rollup Bridge Contract Address</p>
-            </div>
-            <div
-              className=" flex-col flex mt-5 "
-              ref={el => (elementsWalletRef.current[4] = el)}
-            >
-              <CssTextField
-                label="Number"
-                variant="outlined"
-                type="number"
-                value={stakingLimit}
-                onChange={handlestakingLimit}
-              />
-              <p>Staking Limit</p>
-            </div>
-            <div
-              className=" flex-col flex mt-5 "
-              ref={el => (elementsWalletRef.current[5] = el)}
-            >
-              <ThemeProvider theme={theme}>
-                <Box
-                  sx={{
-                    "& label.Mui-focused": {
-                      transition: "all 0.3s ease-in-out",
-                      color: theme.palette.primary.main,
-                    },
-                    "& .MuiOutlinedInput-root": {
-                      "& fieldset": {
-                        transition: "all 0.3s ease-in-out",
-                        borderColor: "#000000",
-                      },
-                      "&.Mui-focused fieldset": {
-                        transition: "all 0.3s ease-in-out",
-                        color: theme.palette.primary.main,
-                        border: "1px solid",
-                      },
-                    },
-                  }}
+              <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                onClose={handleSnackbarClose}
+                message={snackbarMessage}
+              />{" "}
+              <h1
+                className="text-3xl font-black  opacity-0 text-black"
+                ref={el => (elementsWalletRef.current[2] = el)}
+              >
+                1. WhiteList Rollup
+              </h1>
+              <FormControl fullWidth>
+                <div
+                  className=" flex-col flex mt-5  opacity-0"
+                  ref={el => (elementsWalletRef.current[3] = el)}
                 >
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      cluster ID
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={clusterID}
-                      label="clusterID"
-                      onChange={handleChange}
-                    >
-                      <MenuItem value={1}>1</MenuItem>
-                      <MenuItem value={2}>2</MenuItem>
-                      <MenuItem value={3}>3</MenuItem>
-                      <MenuItem value={4}>4</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </ThemeProvider>
-              <p>Cluster ID</p>
-            </div>
-            <div
-              className=" flex justify-center mt-6"
-              ref={el => (elementsWalletRef.current[6] = el)}
-            >
-              <div onClick={handleSubmit2}>
-                <StyledButton2
-                  backgroundColor="white"
-                  hoverColor="white"
-                  color="#171515"
-                  AfterBackground="#171515"
-                  width="14rem"
+                  <CssTextField
+                    label="Address"
+                    variant="outlined"
+                    type="text"
+                    value={rollupBridgeAddress}
+                    onChange={handleRollupBridgeAddress}
+                  />
+                  <p>Rollup Bridge Contract Address</p>
+                </div>
+                <div
+                  className=" flex-col flex mt-5 "
+                  ref={el => (elementsWalletRef.current[4] = el)}
                 >
-                  Register Rollup
-                </StyledButton2>
-              </div>
+                  <CssTextField
+                    label="Name"
+                    variant="outlined"
+                    type="text"
+                    value={rollupName}
+                    onChange={handlerollupName}
+                  />
+                  <p>Rollup Name</p>
+                </div>
+              </FormControl>
+              <div
+                className=" flex justify-center mt-6"
+                ref={el => (elementsWalletRef.current[6] = el)}
+              >
+                {/* <div onClick={handleSubmit2}> */}
+                <div onClick={handleSubmit2}>
+                  <StyledButton2
+                    backgroundColor="white"
+                    hoverColor="white"
+                    color="#171515"
+                    AfterBackground="#171515"
+                    width="8rem"
+                  >
+                    Next
+                  </StyledButton2>
+                </div>
 
-              {/* <Link href={"/Links/RegisterRollup/form"}>
+                {/* <Snackbar
+                  anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                  open={snackbarOpen}
+                  autoHideDuration={6000}
+                  onClose={handleSnackbarClose}
+                  message={snackbarMessage}
+                /> */}
+
+                {/* {txnSucceeded ? (
+                    <>
+                      <Alert severity="success" sx={{ width: "100%" }}>
+                        {snackbarMessage}
+                      </Alert>
+                    </>
+                  ) : (
+                    <>
+                      <Alert severity="error" sx={{ width: "100%" }}>
+                        {snackbarMessage}
+                      </Alert>
+                    </>
+                  )} 
+                  
+                </Snackbar>
+                  */}
+                {/* <Link href={"/Links/RegisterRollup/form"}>
                 <StyledButton2
                   backgroundColor="white"
                   hoverColor="white"
@@ -219,6 +222,7 @@ export default function Home() {
                   Next
                 </StyledButton2>
               </Link> */}
+              </div>
             </div>
           </div>
         </>
@@ -256,7 +260,7 @@ export default function Home() {
       )}
 
       <p
-        className="absolute bottom-10  font-thin w-8/12"
+        className="absolute bottom-3 font-thin w-9/12"
         ref={el => (elementsRef.current[4] = el)}
       >
         Note: This exercise is for demo purposes. When integrating will Layer

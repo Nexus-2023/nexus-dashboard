@@ -29,7 +29,7 @@ export default function Home() {
           className="text-[2.5rem] font-black "
           ref={el => (elementsRef.current[0] = el)}
         >
-          Polygon zkEVM
+          Mantle
         </h1>
         <h1
           className="text-md font-black "

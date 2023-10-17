@@ -41,7 +41,43 @@ const IntegrationTable = () => {
   )
 }
 
-const PolygonTable1 = () => {
+const AdminTable = () => {
+  return (
+    <div>
+      <table className="table-auto ">
+        <thead>
+          <tr>
+            <th>Rollup Name</th>
+            <th>Rollup Bridge Address</th>
+            <th>Cluster ID</th>
+            <th>Staking Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scroll</td>
+            <td>0xE4Cb6F91Cf8748F3FD0c9D281157b276DD437609</td>
+            <td>1</td>
+            <td>25%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
+}
+interface Table1Props {
+  ethLocked: number
+  stakingLimit: number
+}
+
+interface Table2Props {
+  ethStaked: number
+  noOfValidators: number
+  Earning: number
+  EPR: number
+}
+
+const Table1: React.FC<Table1Props> = ({ ethLocked, stakingLimit }) => {
   return (
     <div className="flex items-center text-white font-medium px-4 py-4 text-lg   ">
       <div className=" bg-inter h-32 justify-center items-center flex p-4  ">
@@ -55,15 +91,20 @@ const PolygonTable1 = () => {
       </div>
 
       <div className="flex flex-col bg-primary space-y-4   h-32 ">
-        <div className="border-b-2 py-2 px-4 mt-3">10,000</div>
+        <div className="border-b-2 py-2 px-4 mt-3">{ethLocked}</div>
 
-        <div className="  py-2 px-4 ">80%</div>
+        <div className="  py-2 px-4 ">{stakingLimit}%</div>
       </div>
     </div>
   )
 }
 
-const PolygonTable2 = () => {
+const Table2: React.FC<Table2Props> = ({
+  ethStaked,
+  noOfValidators,
+  Earning,
+  EPR,
+}) => {
   return (
     <>
       <div className="flex   text-white font-medium px-4 py-4 text-xl  w-full  text-center  ">
@@ -83,14 +124,14 @@ const PolygonTable2 = () => {
         </div>
 
         <div className="flex flex-col bg-primary space-y-4  w-full   h-64 ">
-          <div className="border-b-2 py-2 px-4 mt-3">8,000</div>
-          <div className="border-b-2 py-2 px-4 mt-3">260</div>
-          <div className="border-b-2 py-2 px-4 mt-3">230</div>
-          <div className="  py-2 px-4 ">4.81%</div>
+          <div className="border-b-2 py-2 px-4 mt-3">{ethStaked}</div>
+          <div className="border-b-2 py-2 px-4 mt-3">{noOfValidators}</div>
+          <div className="border-b-2 py-2 px-4 mt-3">{Earning}</div>
+          <div className="  py-2 px-4 ">{EPR}%</div>
         </div>
       </div>
     </>
   )
 }
 
-export { IntegrationTable, PolygonTable1, PolygonTable2 }
+export { IntegrationTable, Table1, Table2, AdminTable }

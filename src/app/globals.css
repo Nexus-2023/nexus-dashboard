@@ -19,24 +19,25 @@ table {
 }
 
 table, th  {
-  border: 2px solid var(--secondary);
+  border: 1px solid var(--secondary);
   padding: 10px;
   text-align: center;
-  
+  font-weight: 500;
 }
 
  
 td {
-  border: 3px solid white;
+  border: 1px solid white;
   padding: 10px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
   
   background-color: var(--primary);
   color: white;
 }
 
 th {
+  border: 1px solid white;
   background-color: var(--secondary);
   color: #ffffff;
 }
