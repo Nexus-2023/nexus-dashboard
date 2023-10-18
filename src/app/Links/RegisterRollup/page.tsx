@@ -9,7 +9,6 @@ import Link from "next/link"
 import { useRef, useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 import Box from "@mui/material/Box"
-import Alert from "@mui/material/Alert"
 import MenuItem from "@mui/material/MenuItem"
 import { ThemeProvider } from "@mui/material"
 import { theme } from "@/theme/theme"
@@ -21,6 +20,7 @@ import FormControl from "@mui/material/FormControl"
 import { useRouter, useParams } from "next/navigation"
 import IconButton from "@mui/material/IconButton"
 
+import Alert from "@mui/material/Alert"
 import CloseIcon from "@mui/icons-material/Close"
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()

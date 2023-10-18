@@ -10,10 +10,10 @@ import { useRef, useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 import Box from "@mui/material/Box"
 import { InputAdornment } from "@mui/material"
+import PercentIcon from "@mui/icons-material/Percent"
 import MenuItem from "@mui/material/MenuItem"
 import { ThemeProvider } from "@mui/material"
 import { theme } from "@/theme/theme"
-import PercentIcon from "@mui/icons-material/Percent"
 import { connectNexus } from "@/utils/connectContract"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
 
@@ -167,7 +167,7 @@ export default function Home() {
                       <CloseIcon fontSize="inherit" />
                     </IconButton>
                   }
-                  sx={{ position: "absolute", top: "2rem" }}
+                  sx={{ position: "absolute", bottom: "2rem" }}
                 >
                   Transaction Failed
                 </Alert>
@@ -188,7 +188,7 @@ export default function Home() {
                       <CloseIcon fontSize="inherit" />
                     </IconButton>
                   }
-                  sx={{ position: "absolute", top: "2rem" }}
+                  sx={{ position: "absolute", bottom: "2rem" }}
                 >
                   Transaction Successfull
                 </Alert>
@@ -199,7 +199,7 @@ export default function Home() {
               <>
                 <Alert
                   severity="warning"
-                  sx={{ position: "absolute", top: "2rem" }}
+                  sx={{ position: "absolute", bottom: "2rem" }}
                 >
                   Transaction pending
                 </Alert>
