@@ -26,18 +26,6 @@ import Snackbar from "@mui/material/Snackbar"
 import { useRouter, useParams } from "next/navigation"
 import { ClusterTable } from "@/components/Table"
 
-interface StakingLimit {
-  value: number
-  min: number
-  max: number
-}
-
-const stakingLimit: StakingLimit = {
-  value: 50,
-  min: 0,
-  max: 100,
-}
-
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
 
@@ -218,22 +206,25 @@ export default function Home() {
               </>
             )}
 
-            <div className="mr-[2rem] -mt-[8rem] scale-90">
+            <div
+              className="mr-[2rem] -mt-[8rem] scale-95"
+              ref={el => (elementsWalletRef.current[1] = el)}
+            >
               <ClusterTable />
             </div>
             <div
               className="border-[3px] border-black  h-[30rem] flex-col flex      opacity-0  rounded-[2rem] px-12 py-5"
-              ref={el => (elementsWalletRef.current[1] = el)}
+              ref={el => (elementsWalletRef.current[2] = el)}
             >
               <h1
                 className="text-3xl font-black  opacity-0 text-black"
-                ref={el => (elementsWalletRef.current[2] = el)}
+                ref={el => (elementsWalletRef.current[3] = el)}
               >
                 2. Set Rollup Parameters
               </h1>
               <div
                 className=" flex-col flex mt-5  opacity-0"
-                ref={el => (elementsWalletRef.current[3] = el)}
+                ref={el => (elementsWalletRef.current[4] = el)}
               >
                 <CssTextField
                   label="Address"
@@ -246,7 +237,7 @@ export default function Home() {
               </div>
               <div
                 className=" flex-col flex mt-5 "
-                ref={el => (elementsWalletRef.current[4] = el)}
+                ref={el => (elementsWalletRef.current[5] = el)}
               >
                 <CssTextField
                   label="Percentage"
@@ -270,7 +261,7 @@ export default function Home() {
               </div>
               <div
                 className=" flex-col flex mt-5 "
-                ref={el => (elementsWalletRef.current[5] = el)}
+                ref={el => (elementsWalletRef.current[6] = el)}
               >
                 <ThemeProvider theme={theme}>
                   <Box
@@ -315,7 +306,7 @@ export default function Home() {
               </div>
               <div
                 className=" flex justify-center mt-6"
-                ref={el => (elementsWalletRef.current[6] = el)}
+                ref={el => (elementsWalletRef.current[7] = el)}
               >
                 <div onClick={handleSubmit2}>
                   <StyledButton2

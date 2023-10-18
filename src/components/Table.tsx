@@ -49,7 +49,7 @@ const AdminTable = () => {
         <thead>
           <tr>
             <th className={styles2.th}>Rollup Name</th>
-            <th className={styles2.th}>Rollup Bridge Address</th>
+            <th className={styles2.th}>Rollup Admin Address</th>
             <th className={styles2.th}> Cluster ID</th>
             <th className={styles2.th}>Staking Limit</th>
           </tr>
