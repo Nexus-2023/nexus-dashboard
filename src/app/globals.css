@@ -19,7 +19,7 @@ table {
 }
 
 table, th  {
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--secondary) !important;
   padding: 10px;
   text-align: center;
   font-weight: 500;
@@ -27,20 +27,22 @@ table, th  {
 
  
 td {
-  border: 1px solid white;
+  border: 1px solid white !important;
   padding: 10px;
   text-align: center;
   font-weight: 500;
   
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--primary) !important;
+  color: white !important;
 }
 
 th {
   border: 1px solid white;
-  background-color: var(--secondary);
-  color: #ffffff;
+  background-color: var(--secondary) !important; 
+  color: #ffffff !important;
 }
+
+ 
 
 body {
   font-family: 'Work Sans', sans-serif;

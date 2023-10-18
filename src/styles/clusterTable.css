@@ -1,0 +1,40 @@
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+  --primary : #0375C9;
+  --secondary : #045192;
+  --inter : #126BB5;
+   
+  }
+.table {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+    background-color: white;
+    color: black;
+  }
+  
+  th {
+    border: 1px solid black;
+    background-color: var(--primary);
+    color: #ffffff;
+  }
+
+  /* tr {
+    background-color: var(--primary);
+    color: white;
+  } */
+    
+   
+  
+ 

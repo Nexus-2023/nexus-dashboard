@@ -65,6 +65,47 @@ const AdminTable = () => {
     </div>
   )
 }
+
+const ClusterTable = () => {
+  return (
+    <div>
+      <table className="">
+        <thead>
+          <tr>
+            <th className="">Cluster ID</th>
+            <th className="">Highest APR (%)</th>
+            <th className="">Effectiveness Rating (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="">1</td>
+            <td className="">4.68 %</td>
+            <td className="">99.3 %</td>
+          </tr>
+
+          <tr>
+            <td className=""> 2</td>
+            <td className="">4.62 %</td>
+            <td className="">99.5 %</td>
+          </tr>
+
+          <tr>
+            <td className="">3</td>
+            <td className="">4.64 %</td>
+            <td className="">99.1 %</td>
+          </tr>
+
+          <tr>
+            <td className="">4</td>
+            <td className="">4.58 %</td>
+            <td className="">99.7 %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  )
+}
 interface Table1Props {
   ethLocked: number
   stakingLimit: number
@@ -134,4 +175,4 @@ const Table2: React.FC<Table2Props> = ({
   )
 }
 
-export { IntegrationTable, Table1, Table2, AdminTable }
+export { IntegrationTable, Table1, Table2, AdminTable, ClusterTable }

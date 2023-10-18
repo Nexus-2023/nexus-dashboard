@@ -24,6 +24,8 @@ import CloseIcon from "@mui/icons-material/Close"
 import FormControl from "@mui/material/FormControl"
 import Snackbar from "@mui/material/Snackbar"
 import { useRouter, useParams } from "next/navigation"
+import { ClusterTable } from "@/components/Table"
+
 interface StakingLimit {
   value: number
   min: number
@@ -215,6 +217,10 @@ export default function Home() {
                 </Alert>
               </>
             )}
+
+            <div className="mr-[2rem] -mt-[8rem] scale-90">
+              <ClusterTable />
+            </div>
             <div
               className="border-[3px] border-black  h-[30rem] flex-col flex      opacity-0  rounded-[2rem] px-12 py-5"
               ref={el => (elementsWalletRef.current[1] = el)}
