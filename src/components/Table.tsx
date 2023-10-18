@@ -1,39 +1,40 @@
 import React from "react"
-
+import styles from "../styles/clusterTable.module.css"
+import styles2 from "../styles/Table.module.css"
 const IntegrationTable = () => {
   return (
     <div>
-      <table className="table-auto ">
+      <table className={styles2.table}>
         <thead>
-          <tr className=" ">
-            <th>Rollup</th>
-            <th>Number of Active Validator</th>
-            <th>Total Eth Staked</th>
-            <th>Staking Limit</th>
-            <th>Eth Earned</th>
+          <tr>
+            <th className={styles2.th}>Rollup</th>
+            <th className={styles2.th}>Number of Active Validator</th>
+            <th className={styles2.th}>Total Eth Staked</th>
+            <th className={styles2.th}>Staking Limit</th>
+            <th className={styles2.th}>Eth Earned</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Polygon zkEVM</td>
-            <td>20</td>
-            <td>1000</td>
-            <td>25%</td>
-            <td>30</td>
+            <td className={styles2.td}>Polygon zkEVM</td>
+            <td className={styles2.td}>20</td>
+            <td className={styles2.td}>1000</td>
+            <td className={styles2.td}>25%</td>
+            <td className={styles2.td}>30</td>
           </tr>
           <tr>
-            <td>Mantle</td>
-            <td>20</td>
-            <td>1000</td>
-            <td>25%</td>
-            <td>30</td>
+            <td className={styles2.td}>Mantle</td>
+            <td className={styles2.td}>20</td>
+            <td className={styles2.td}>1000</td>
+            <td className={styles2.td}>25%</td>
+            <td className={styles2.td}>30</td>
           </tr>
           <tr>
-            <td>Scroll</td>
-            <td>20</td>
-            <td>1000</td>
-            <td>25%</td>
-            <td>30</td>
+            <td className={styles2.td}>Scroll</td>
+            <td className={styles2.td}>20</td>
+            <td className={styles2.td}>1000</td>
+            <td className={styles2.td}>25%</td>
+            <td className={styles2.td}>30</td>
           </tr>
         </tbody>
       </table>
@@ -44,21 +45,23 @@ const IntegrationTable = () => {
 const AdminTable = () => {
   return (
     <div>
-      <table className="table-auto ">
+      <table className={styles2.table}>
         <thead>
           <tr>
-            <th>Rollup Name</th>
-            <th>Rollup Bridge Address</th>
-            <th>Cluster ID</th>
-            <th>Staking Limit</th>
+            <th className={styles2.th}>Rollup Name</th>
+            <th className={styles2.th}>Rollup Bridge Address</th>
+            <th className={styles2.th}> Cluster ID</th>
+            <th className={styles2.th}>Staking Limit</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Scroll</td>
-            <td>0xE4Cb6F91Cf8748F3FD0c9D281157b276DD437609</td>
-            <td>1</td>
-            <td>25%</td>
+            <td className={styles2.td}>Scroll</td>
+            <td className={styles2.td}>
+              0xE4Cb6F91Cf8748F3FD0c9D281157b276DD437609
+            </td>
+            <td className={styles2.td}>1</td>
+            <td className={styles2.td}>25%</td>
           </tr>
         </tbody>
       </table>
@@ -69,37 +72,37 @@ const AdminTable = () => {
 const ClusterTable = () => {
   return (
     <div>
-      <table className="">
+      <table className={styles.table}>
         <thead>
           <tr>
-            <th className="">Cluster ID</th>
-            <th className="">Highest APR (%)</th>
-            <th className="">Effectiveness Rating (%)</th>
+            <th className={styles.th}>Cluster ID</th>
+            <th className={styles.th}>Highest APR (%)</th>
+            <th className={styles.th}>Effectiveness Rating (%)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="">1</td>
-            <td className="">4.68 %</td>
-            <td className="">99.3 %</td>
+            <td className={styles.td}>1</td>
+            <td className={styles.td}>4.68 %</td>
+            <td className={styles.td}>99.3 %</td>
           </tr>
 
           <tr>
-            <td className=""> 2</td>
-            <td className="">4.62 %</td>
-            <td className="">99.5 %</td>
+            <td className={styles.td}> 2</td>
+            <td className={styles.td}>4.62 %</td>
+            <td className={styles.td}>99.5 %</td>
           </tr>
 
           <tr>
-            <td className="">3</td>
-            <td className="">4.64 %</td>
-            <td className="">99.1 %</td>
+            <td className={styles.td}>3</td>
+            <td className={styles.td}>4.64 %</td>
+            <td className={styles.td}>99.1 %</td>
           </tr>
 
           <tr>
-            <td className="">4</td>
-            <td className="">4.58 %</td>
-            <td className="">99.7 %</td>
+            <td className={styles.td}>4</td>
+            <td className={styles.td}>4.58 %</td>
+            <td className={styles.td}>99.7 %</td>
           </tr>
         </tbody>
       </table>
