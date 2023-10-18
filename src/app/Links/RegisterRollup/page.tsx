@@ -19,30 +19,38 @@ import Select, { SelectChangeEvent } from "@mui/material/Select"
 import Snackbar from "@mui/material/Snackbar"
 import FormControl from "@mui/material/FormControl"
 import { useRouter, useParams } from "next/navigation"
+import IconButton from "@mui/material/IconButton"
 
+import CloseIcon from "@mui/icons-material/Close"
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const [txnSucceeded, settxnSucceeded] = useState(false)
-  const [snackbarMessage, setSnackbarMessage] = useState("")
+
+  const [aleartErrorOpen, setaleartErrorOpen] = useState(false)
+  const [aleartPendingOpen, setaleartPendingOpen] = useState(false)
+  const [aleartSucceessOpen, setaleartSucceessOpen] = useState(false)
 
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
   const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
-  const [rollupBridgeAddress, setrollupBridgeAddress] = useState("")
+  const [rollupadminAddress, setrollupadminAddress] = useState(``)
   const [rollupName, setrollupName] = useState("")
   const router = useRouter()
-  const params = useParams()
-  const handleRollupBridgeAddress = (e: any) => {
-    setrollupBridgeAddress(e.target.value)
+  console.log("address", address)
+
+  const handlerollupadminAddress = (e: any) => {
+    setrollupadminAddress(e.target.value)
   }
   const handlerollupName = (e: any) => {
     setrollupName(e.target.value)
   }
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false)
+  const handlaleartErrorclose = () => {
+    setaleartErrorOpen(false)
   }
-  const navigateToNextPage = () => {
-    router.push(`/Links/RegisterRollup/${rollupBridgeAddress}`)
+
+  const handlaleartPendingclose = () => {
+    setaleartPendingOpen(false)
+  }
+  const handlaleartSuccessclose = () => {
+    setaleartSucceessOpen(false)
   }
 
   async function handleSubmit2(event: any) {
@@ -50,7 +58,7 @@ export default function Home() {
     event.preventDefault()
 
     const nexusContract = await connectNexus()
-    const addressbridgeContract = rollupBridgeAddress
+    const addressbridgeContract = rollupadminAddress
 
     console.log("addressbridgeContract", addressbridgeContract)
     console.log("rollupName", rollupName)
@@ -63,24 +71,21 @@ export default function Home() {
 
           { gasLimit: 2200000 }
         )
+        setaleartPendingOpen(true)
         await txn.wait()
+        handlaleartPendingclose()
+        setaleartSucceessOpen(true)
         console.log("Transaction succeeded:", txn.hash)
         console.log("Minting...", txn.hash)
-        setSnackbarOpen(true)
-        setSnackbarMessage("Transaction succeeded!")
-        console.log("Minted -- ", txn.hash)
-        // router.push({
-        //   pathname: "/Links/RegisterRollup/form",
-        //   query: { rollupName, addressbridgeContract },
-        // })
 
-        // router.push(`/Links/RegisterRollup/form${newChatId}`)
-        router.push(`/Links/RegisterRollup/${rollupBridgeAddress}`)
+        console.log("Minted -- ", txn.hash)
+
+        router.push(`/Links/RegisterRollup/form`)
       }
     } catch (e) {
       console.error("Transaction failed:", e)
-      setSnackbarMessage("Transaction failed. Please try again.")
-      setSnackbarOpen(true)
+      handlaleartPendingclose()
+      setaleartErrorOpen(true)
     }
   }
 
@@ -99,6 +104,7 @@ export default function Home() {
         delay: anime.stagger(250, { easing: "easeOutSine" }),
       })
     }
+    setrollupadminAddress(`${address}`)
   }, [isConnected])
   useEffect(() => {
     if (elementsRef.current) {
@@ -125,17 +131,62 @@ export default function Home() {
 
           {/* mt-20 mr-8  */}
           <div className="h-[100vh] flex   justify-center items-center">
+            {aleartErrorOpen && (
+              <>
+                <Alert
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={handlaleartErrorclose}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                  sx={{ position: "absolute", top: "2rem" }}
+                >
+                  Transaction Failed
+                </Alert>
+              </>
+            )}
+
+            {aleartSucceessOpen && (
+              <>
+                <Alert
+                  severity="success"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={handlaleartSuccessclose}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                  sx={{ position: "absolute", top: "2rem" }}
+                >
+                  Transaction Successfull
+                </Alert>
+              </>
+            )}
+
+            {aleartPendingOpen && (
+              <>
+                <Alert
+                  severity="warning"
+                  sx={{ position: "absolute", top: "2rem" }}
+                >
+                  Transaction pending
+                </Alert>
+              </>
+            )}
             <div
               className="border-[3px] border-black  h-[25rem] flex-col flex   opacity-0  rounded-[2rem] px-12 py-5"
               ref={el => (elementsWalletRef.current[1] = el)}
             >
-              <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={6000}
-                anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                onClose={handleSnackbarClose}
-                message={snackbarMessage}
-              />{" "}
               <h1
                 className="text-3xl font-black  opacity-0 text-black"
                 ref={el => (elementsWalletRef.current[2] = el)}
@@ -151,10 +202,10 @@ export default function Home() {
                     label="Address"
                     variant="outlined"
                     type="text"
-                    value={rollupBridgeAddress}
-                    onChange={handleRollupBridgeAddress}
+                    value={rollupadminAddress}
+                    onChange={handlerollupadminAddress}
                   />
-                  <p>Rollup Bridge Contract Address</p>
+                  <p>Rollup Admin Address</p>
                 </div>
                 <div
                   className=" flex-col flex mt-5 "

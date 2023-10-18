@@ -9,58 +9,86 @@ import Link from "next/link"
 import { useRef, useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 import Box from "@mui/material/Box"
-
+import { InputAdornment } from "@mui/material"
 import MenuItem from "@mui/material/MenuItem"
 import { ThemeProvider } from "@mui/material"
 import { theme } from "@/theme/theme"
-
+import PercentIcon from "@mui/icons-material/Percent"
 import { connectNexus } from "@/utils/connectContract"
 import Select, { SelectChangeEvent } from "@mui/material/Select"
 
 import InputLabel from "@mui/material/InputLabel"
-
+import IconButton from "@mui/material/IconButton"
+import Alert from "@mui/material/Alert"
+import CloseIcon from "@mui/icons-material/Close"
 import FormControl from "@mui/material/FormControl"
 import Snackbar from "@mui/material/Snackbar"
 import { useRouter, useParams } from "next/navigation"
+interface StakingLimit {
+  value: number
+  min: number
+  max: number
+}
+
+const stakingLimit: StakingLimit = {
+  value: 50,
+  min: 0,
+  max: 100,
+}
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const [txnSucceeded, settxnSucceeded] = useState(false)
-  const [snackbarMessage, setSnackbarMessage] = useState("")
+
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
   const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
+
+  const [aleartErrorOpen, setaleartErrorOpen] = useState(false)
+  const [aleartPendingOpen, setaleartPendingOpen] = useState(false)
+  const [aleartSucceessOpen, setaleartSucceessOpen] = useState(false)
 
   const [stakingLimit, setstakingLimit] = useState(0)
   const [clusterID, setclusterID] = useState("1")
   const params = useParams()
-
+  const router = useRouter()
   //const rollupName = params.rollupName
-  const GivenaddressbridgeContract = params.form
-  const [rollupBridgeAddress, setrollupBridgeAddress] = useState(
-    `${GivenaddressbridgeContract}`
-  )
-  console.log("GivenaddressbridgeContract ", GivenaddressbridgeContract)
-  console.log("params", params)
+  // const GivenaddressbridgeContract = params.form
+  const [rollupBridgeAddress, setrollupBridgeAddress] = useState(``)
+  // console.log("GivenaddressbridgeContract ", GivenaddressbridgeContract)
+  // console.log("params", params)
 
   console.log("clusterID", clusterID)
+  const handlaleartErrorclose = () => {
+    setaleartErrorOpen(false)
+  }
 
+  const handlaleartPendingclose = () => {
+    setaleartPendingOpen(false)
+  }
+  const handlaleartSuccessclose = () => {
+    setaleartSucceessOpen(false)
+  }
   const handleRollupBridgeAddress = (e: any) => {
     setrollupBridgeAddress(e.target.value)
   }
   const handlestakingLimit = (e: any) => {
-    setstakingLimit(e.target.value)
+    if (
+      e.target.value === "" ||
+      (parseFloat(e.target.value) >= 0 && parseFloat(e.target.value) <= 100)
+    ) {
+      setstakingLimit(e.target.value)
+    } else {
+      console.log("incorrect staking value", e.target.value)
+    }
+    // setstakingLimit(e.target.value)
   }
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false)
-  }
+
   const handleChange = (event: SelectChangeEvent) => {
     setclusterID(event.target.value as string)
   }
   async function handleSubmit2(event: any) {
     console.log("confirm button clicked")
     event.preventDefault()
-
+    //Handle staking persentage conversion
     const nexusContract = await connectNexus()
     const addressbridgeContract = rollupBridgeAddress
 
@@ -78,17 +106,21 @@ export default function Home() {
           StakingLimit,
           { gasLimit: 2200000 }
         )
+        setaleartPendingOpen(true)
         await txn1.wait()
+        handlaleartPendingclose()
+        setaleartSucceessOpen(true)
         console.log("Minting...", txn1.hash)
 
         console.log("Minted -- ", txn1.hash)
-        setSnackbarOpen(true)
-        setSnackbarMessage("Transaction succeeded!")
+
+        router.push(`/Links/AdminView`)
+        // query from graph
       }
     } catch (e) {
       console.log("error :" + e)
-      setSnackbarMessage("Transaction failed. Please try again.")
-      setSnackbarOpen(true)
+      handlaleartPendingclose()
+      setaleartErrorOpen(true)
     }
   }
 
@@ -131,17 +163,62 @@ export default function Home() {
             <ConnectButton />
           </div>
           <div className="h-[100vh] flex   justify-center items-center">
+            {aleartErrorOpen && (
+              <>
+                <Alert
+                  severity="error"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={handlaleartErrorclose}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                  sx={{ position: "absolute", top: "2rem" }}
+                >
+                  Transaction Failed
+                </Alert>
+              </>
+            )}
+
+            {aleartSucceessOpen && (
+              <>
+                <Alert
+                  severity="success"
+                  action={
+                    <IconButton
+                      aria-label="close"
+                      color="inherit"
+                      size="small"
+                      onClick={handlaleartSuccessclose}
+                    >
+                      <CloseIcon fontSize="inherit" />
+                    </IconButton>
+                  }
+                  sx={{ position: "absolute", top: "2rem" }}
+                >
+                  Transaction Successfull
+                </Alert>
+              </>
+            )}
+
+            {aleartPendingOpen && (
+              <>
+                <Alert
+                  severity="warning"
+                  sx={{ position: "absolute", top: "2rem" }}
+                >
+                  Transaction pending
+                </Alert>
+              </>
+            )}
             <div
               className="border-[3px] border-black  h-[30rem] flex-col flex      opacity-0  rounded-[2rem] px-12 py-5"
               ref={el => (elementsWalletRef.current[1] = el)}
             >
-              <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={6000}
-                anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                onClose={handleSnackbarClose}
-                message={snackbarMessage}
-              />{" "}
               <h1
                 className="text-3xl font-black  opacity-0 text-black"
                 ref={el => (elementsWalletRef.current[2] = el)}
@@ -166,11 +243,22 @@ export default function Home() {
                 ref={el => (elementsWalletRef.current[4] = el)}
               >
                 <CssTextField
-                  label="Number"
+                  label="Percentage"
                   variant="outlined"
                   type="number"
                   value={stakingLimit}
                   onChange={handlestakingLimit}
+                  InputProps={{
+                    ...{},
+                    inputProps: {
+                      inputMode: "numeric",
+                    },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <PercentIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
                 <p>Staking Limit</p>
               </div>

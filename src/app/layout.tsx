@@ -28,6 +28,12 @@ import {
 } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "https://api.studio.thegraph.com/query/55430/nexus/v0.0.3",
+})
 
 const getSiweMessageOptions = () => ({
   statement: "Sign in to my RainbowKit app",
@@ -101,13 +107,15 @@ export default function RootLayout({
       <body>
         <WagmiConfig config={wagmiConfig}>
           <RainbowKitProvider chains={chains}>
-            <div className="flex">
-              <div>
-                <SideBar />
-              </div>
+            <ApolloProvider client={client}>
+              <div className="flex">
+                <div>
+                  <SideBar />
+                </div>
 
-              <div>{children}</div>
-            </div>
+                <div>{children}</div>
+              </div>
+            </ApolloProvider>
           </RainbowKitProvider>
         </WagmiConfig>
       </body>

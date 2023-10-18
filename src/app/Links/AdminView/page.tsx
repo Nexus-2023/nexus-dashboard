@@ -129,7 +129,7 @@ export default function Home() {
             >
               Admin Dashboard{" "}
             </h1>
-            <div className="flex space-x-16 items-center justify-center mt-6">
+            <div className="flex space-x-16   mt-6">
               <div
                 className="flex-col "
                 ref={el => (elementsWalletRef.current[2] = el)}
@@ -142,20 +142,10 @@ export default function Home() {
                     value={rewardAddress}
                     onChange={handlerewardAddress}
                   />
-                  <p>Rollup Bridge Contract Address</p>
+                  <p>Reward Address</p>
                 </div>
 
-                <div className="">
-                  <StyledButton2
-                    backgroundColor="white"
-                    hoverColor="white"
-                    color="#171515"
-                    AfterBackground="#171515"
-                    width="6rem"
-                  >
-                    Change
-                  </StyledButton2>{" "}
-                </div>
+                <div className=""></div>
               </div>
 
               <div

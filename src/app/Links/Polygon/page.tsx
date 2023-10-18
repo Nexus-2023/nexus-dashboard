@@ -6,10 +6,15 @@ import { StyledButton1, StyledButton2 } from "@/components/button"
 import { Table1, Table2 } from "@/components/Table"
 import { useRef, useEffect } from "react"
 import anime from "animejs/lib/anime.es.js"
+import { GET_ROLLUP } from "@/app/(Queries)/graphQl"
+
+import { useQuery } from "@apollo/client/react"
 
 export default function Home() {
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
 
+  const { loading, data } = useQuery(GET_ROLLUP)
+  console.log("data = ", data)
   useEffect(() => {
     if (elementsRef.current) {
       anime.timeline({ loop: false }).add({
