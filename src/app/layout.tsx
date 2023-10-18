@@ -54,10 +54,11 @@ const defaultChains = [
   //   iconUrl: "https://i.imgur.com/oo7FPwT.png",
   // },
 
-  { ...scrollTestnet },
-  { ...mantleTestnet },
+  { ...scrollTestnet, iconurl: "https://i.imgur.com/6mxlywf.png" },
+  { ...mantleTestnet, iconurl: "https://i.imgur.com/Txza54E.png" },
   {
     ...polygonZkEvm,
+    iconurl: "https://i.imgur.com/eB4UsQf.png",
   },
   { ...optimism },
 
