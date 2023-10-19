@@ -36,7 +36,7 @@ export default function Home() {
   const [aleartPendingOpen, setaleartPendingOpen] = useState(false)
   const [aleartSucceessOpen, setaleartSucceessOpen] = useState(false)
 
-  const [stakingLimit, setstakingLimit] = useState(0)
+  const [stakingLimit, setstakingLimit] = useState(0.01)
   const [clusterID, setclusterID] = useState("1")
   const params = useParams()
   const router = useRouter()
@@ -63,13 +63,13 @@ export default function Home() {
   const handlestakingLimit = (e: any) => {
     if (
       e.target.value === "" ||
-      (parseFloat(e.target.value) >= 0 && parseFloat(e.target.value) <= 100)
+      (parseFloat(e.target.value) >= 0.01 && parseFloat(e.target.value) <= 100)
     ) {
       setstakingLimit(e.target.value)
+      console.log(" setstakingLimit", e.target.value)
     } else {
       console.log("incorrect staking value", e.target.value)
     }
-    // setstakingLimit(e.target.value)
   }
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -83,7 +83,7 @@ export default function Home() {
     const addressbridgeContract = rollupBridgeAddress
 
     const operatorClusterID = Number(clusterID)
-    const StakingLimit = Number(stakingLimit)
+    const StakingLimit = Number(stakingLimit) * 100
     console.log("addressbridgeContract", addressbridgeContract)
     console.log("StakingLimit", StakingLimit)
     console.log("operatorClusterID ", operatorClusterID)
@@ -207,12 +207,6 @@ export default function Home() {
             )}
 
             <div
-              className="mr-[2rem] -mt-[8rem] scale-95"
-              ref={el => (elementsWalletRef.current[1] = el)}
-            >
-              <ClusterTable />
-            </div>
-            <div
               className="border-[3px] border-black  h-[30rem] flex-col flex      opacity-0  rounded-[2rem] px-12 py-5"
               ref={el => (elementsWalletRef.current[2] = el)}
             >
@@ -320,6 +314,12 @@ export default function Home() {
                   </StyledButton2>
                 </div>
               </div>
+            </div>
+            <div
+              className="ml-[2rem] -mt-[8rem] scale-95"
+              ref={el => (elementsWalletRef.current[1] = el)}
+            >
+              <ClusterTable />
             </div>
           </div>
         </>

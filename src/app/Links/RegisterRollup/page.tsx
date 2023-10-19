@@ -31,6 +31,7 @@ export default function Home() {
 
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
   const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
+
   const [rollupadminAddress, setrollupadminAddress] = useState(``)
   const [rollupName, setrollupName] = useState("")
   const router = useRouter()

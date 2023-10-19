@@ -32,7 +32,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/55430/nexus/v0.0.3",
+  uri: "https://api.studio.thegraph.com/query/55430/nexus/version/latest",
 })
 
 const getSiweMessageOptions = () => ({

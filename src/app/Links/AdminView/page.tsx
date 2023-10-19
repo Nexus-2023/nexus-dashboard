@@ -29,15 +29,14 @@ export default function Home() {
   // const [rollupRegistered, setrollupRegistered] = useState(false)
   const [rollupRegistered, setrollupRegistered] = useState(true)
   const [rewardAddress, setrewardAddress] = useState("0x")
-  const [stakingLimit, setstakingLimit] = useState(0)
+  const [stakingLimit, setstakingLimit] = useState(0.01)
   const [aleartErrorOpen, setaleartErrorOpen] = useState(false)
   const [aleartPendingOpen, setaleartPendingOpen] = useState(false)
   const [aleartSucceessOpen, setaleartSucceessOpen] = useState(false)
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const [txnSucceeded, settxnSucceeded] = useState(false)
-  const [snackbarMessage, setSnackbarMessage] = useState("")
+
   const elementsWalletRef = useRef<(HTMLDivElement | null)[]>([])
+  const elementsRef2 = useRef<(HTMLDivElement | null)[]>([])
   const elementsWalletRef2 = useRef<(HTMLDivElement | null)[]>([])
   const handlaleartErrorclose = () => {
     setaleartErrorOpen(false)
@@ -64,7 +63,12 @@ export default function Home() {
     }
   }
 `)
-  console.log("user data", data)
+
+  if (loading) {
+    console.log("user data", data)
+  }
+  // console.log("graph error ", error)
+
   // if (isConnected) {
   // }
 
@@ -74,13 +78,13 @@ export default function Home() {
   const handlestakingLimit = (e: any) => {
     if (
       e.target.value === "" ||
-      (parseFloat(e.target.value) >= 0 && parseFloat(e.target.value) <= 100)
+      (parseFloat(e.target.value) >= 0.01 && parseFloat(e.target.value) <= 100)
     ) {
       setstakingLimit(e.target.value)
+      console.log(" setstakingLimit", e.target.value)
     } else {
       console.log("incorrect staking value", e.target.value)
     }
-    // setstakingLimit(e.target.value)
   }
 
   async function handleSubmitStaking(event: any) {
@@ -144,6 +148,24 @@ export default function Home() {
       })
     }
   }, [isConnected])
+
+  // useEffect(() => {
+  //   console.log()
+  //   const cond =
+  //     elementsRef2.current && elementsRef2.current.length > 0 && elementsRef2
+  //   console.log("eelementsRef2 ", elementsRef2)
+
+  //   if (elementsRef2.current) {
+  //     const targets = elementsRef2.current.filter(element => element)
+  //     anime.timeline({ loop: false }).add({
+  //       targets: targets,
+  //       translateY: [-20, 0],
+  //       opacity: [0, 1],
+  //       duration: 1000,
+  //       delay: anime.stagger(250, { easing: "easeOutSine" }),
+  //     })
+  //   }
+  // }, [loading])
 
   useEffect(() => {
     if (elementsRef.current) {

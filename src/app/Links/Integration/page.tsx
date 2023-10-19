@@ -18,6 +18,7 @@ export default function Home() {
 
   if (loading === false) {
     console.log("data = ", data)
+    console.log("error", error)
 
     console.log("rollups = ", data.rollups)
     console.log("loading  = ", loading)
