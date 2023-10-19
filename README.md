@@ -37,7 +37,7 @@ We achieve this by modifying the Optimism Layer 1 bridge contract, running our c
 To get started with Nexus Network and experience the power of our pluggable staking solution, follow these steps:
 
 ```
-git clone 
+git clone https://github.com/Nexus-2023/nexus-dashboard.git
 cd nexus-dashboard
 npm run dev
 ```
