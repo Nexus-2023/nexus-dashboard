@@ -178,6 +178,38 @@ export default function Home() {
 
   return (
     <div className="  flex flex-col items-center justify-center   w-[83vw] container mx-auto">
+      {isConnected === false && (
+        <>
+          <div className="  flex flex-col w-full items-center justify-center mt-12">
+            <h1
+              className="text-[2.5rem] font-black  "
+              ref={el => (elementsRef.current[0] = el)}
+            >
+              Admin Page{" "}
+            </h1>
+            <h1
+              className="text-lg font-light mt-4 "
+              ref={el => (elementsRef.current[1] = el)}
+            >
+              connect your wallet to get started{" "}
+            </h1>
+          </div>
+
+          <div ref={el => (elementsRef.current[2] = el)} className="">
+            <Image
+              src={"/Images/MetamaskLogo.svg"}
+              width={200}
+              height={200}
+              alt="metamask logo"
+              className="mt-8 mb-8"
+            />
+          </div>
+
+          <div ref={el => (elementsRef.current[3] = el)} className=" ">
+            <ConnectButton />
+          </div>
+        </>
+      )}
       {aleartErrorOpen && (
         <>
           <Alert
@@ -415,39 +447,6 @@ export default function Home() {
                 </StyledButton1>
               </div>
             </Link>
-          </div>
-        </>
-      )}
-
-      {isConnected === false && (
-        <>
-          <div className="  flex flex-col w-full items-center justify-center mt-12">
-            <h1
-              className="text-[2.5rem] font-black  "
-              ref={el => (elementsRef.current[0] = el)}
-            >
-              Admin Page{" "}
-            </h1>
-            <h1
-              className="text-lg font-light mt-4 "
-              ref={el => (elementsRef.current[1] = el)}
-            >
-              connect your wallet to get started{" "}
-            </h1>
-          </div>
-
-          <div ref={el => (elementsRef.current[2] = el)} className="">
-            <Image
-              src={"/Images/MetamaskLogo.svg"}
-              width={200}
-              height={200}
-              alt="metamask logo"
-              className="mt-8 mb-8"
-            />
-          </div>
-
-          <div ref={el => (elementsRef.current[3] = el)} className=" ">
-            <ConnectButton />
           </div>
         </>
       )}
