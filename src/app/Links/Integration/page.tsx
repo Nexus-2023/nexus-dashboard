@@ -113,7 +113,10 @@ export default function Home() {
                     <td className={tableStyles.td}>{rollup.name || "N/A"}</td>
                     <td className={tableStyles.td}>{rollup.validatorCount}</td>
                     <td className={tableStyles.td}>{rollup.rewards}</td>
-                    <td className={tableStyles.td}>{rollup.stakingLimit}</td>
+                    <td className={tableStyles.td}>
+                      {" "}
+                      {rollup.stakingLimit / 100}%
+                    </td>
                     <td className={tableStyles.td}>{"1 ETH"}</td>{" "}
                     {/* Eth Earned is not provided in the GraphQL response */}
                   </tr>

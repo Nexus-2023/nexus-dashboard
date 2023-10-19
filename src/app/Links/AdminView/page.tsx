@@ -233,7 +233,7 @@ export default function Home() {
           </Alert>
         </>
       )}
-      {isConnected && rollupRegistered && (
+      {isConnected && data ? (
         <>
           <div
             className=" absolute top-5 right-5 "
@@ -242,7 +242,7 @@ export default function Home() {
             <ConnectButton />
           </div>
 
-          <div className="    flex flex-col w-full items-center justify-center mt-12">
+          <div className="    flex flex-col w-full  items-center    justify-center mt-12">
             <h1
               className="text-[2.5rem] font-black  "
               ref={el => (elementsWalletRef.current[1] = el)}
@@ -250,7 +250,7 @@ export default function Home() {
               Admin Dashboard{" "}
             </h1>
             <div className="flex space-x-16   mt-6">
-              <div
+              {/* <div
                 className="flex-col "
                 ref={el => (elementsWalletRef.current[2] = el)}
               >
@@ -266,11 +266,11 @@ export default function Home() {
                 </div>
 
                 <div className=""></div>
-              </div>
+              </div> */}
 
               <div
                 className="flex-col"
-                ref={el => (elementsWalletRef.current[3] = el)}
+                ref={el => (elementsWalletRef.current[2] = el)}
               >
                 <div className=" flex-col flex mt-5  ">
                   <CssTextField
@@ -293,7 +293,10 @@ export default function Home() {
                   />
                   <p>staking Limit</p>
                 </div>
-                <div className="" onClick={handleSubmitStaking}>
+                <div
+                  className="flex justify-center items-center   "
+                  onClick={handleSubmitStaking}
+                >
                   <StyledButton2
                     backgroundColor="white"
                     hoverColor="white"
@@ -306,58 +309,46 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            {loading ? (
-              <>
-                <div className={loadingStyles.loader}>
-                  <div className={loadingStyles.loader__bar}></div>
-                  <div className={loadingStyles.loader__bar}></div>
-                  <div className={loadingStyles.loader__bar}></div>
-                  <div className={loadingStyles.loader__bar}></div>
-                  <div className={loadingStyles.loader__bar}></div>
-                  <div className={loadingStyles.loader__ball}></div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div
-                  className="mt-12"
-                  ref={el => (elementsWalletRef.current[4] = el)}
-                >
-                  <table className={tableStyles.table}>
-                    <thead>
-                      <tr>
-                        <th className={tableStyles.th}>Index</th>
-                        <th className={tableStyles.th}>Rollup Name</th>
-                        <th className={tableStyles.th}>Rollup Admin address</th>
-                        <th className={tableStyles.th}>Cluster ID</th>
-                        <th className={tableStyles.th}>Staking Limit</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.rollups.map((rollup: any, index: number) => (
-                        <tr key={index}>
-                          <td className={tableStyles.td}>{index + 1}</td>
-                          <td className={tableStyles.td}>
-                            {rollup.name || "N/A"}
-                          </td>
-                          <td className={tableStyles.td}>{rollup.id}</td>
-                          <td className={tableStyles.td}>{rollup.clusterId}</td>
-                          <td className={tableStyles.td}>
-                            {rollup.stakingLimit}
-                          </td>
-
-                          {/* Eth Earned is not provided in the GraphQL response */}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </>
-            )}
 
             <div
               className="mt-12"
-              ref={el => (elementsWalletRef.current[5] = el)}
+              ref={el => (elementsWalletRef.current[3] = el)}
+            >
+              <table className={tableStyles.table}>
+                <thead>
+                  <tr>
+                    <th className={tableStyles.th}>Rollup Name</th>
+
+                    <th className={tableStyles.th}>Cluster ID</th>
+                    <th className={tableStyles.th}>Staking Limit</th>
+                    {/* <th className={tableStyles.th}>Rollup Admin address</th> */}
+                    <th className={tableStyles.th}>Rollup Bridge address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.rollups.map((rollup: any, index: number) => (
+                    <tr key={index}>
+                      <td className={tableStyles.td}>{rollup.name || "N/A"}</td>
+
+                      <td className={tableStyles.td}>{rollup.clusterId}</td>
+                      <td className={tableStyles.td}>
+                        {rollup.stakingLimit / 100}%
+                      </td>
+                      {/* <td className={tableStyles.td}>{rollup.id}</td> */}
+                      <td className={tableStyles.td}>
+                        {rollup.bridgeContract}
+                      </td>
+
+                      {/* Eth Earned is not provided in the GraphQL response */}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div
+              className="mt-12"
+              ref={el => (elementsWalletRef.current[4] = el)}
             >
               <StyledButton1 borderColor="#045192" backgroundColor="#045192">
                 Claim Reward
@@ -365,8 +356,26 @@ export default function Home() {
             </div>
           </div>
         </>
+      ) : (
+        <>
+          <div className=" w-[82vw] flex h-[100vh] flex-col  justify-center items-center">
+            <div>
+              {" "}
+              <div className={loadingStyles.loader}>
+                <div className={loadingStyles.loader__bar}></div>
+                <div className={loadingStyles.loader__bar}></div>
+                <div className={loadingStyles.loader__bar}></div>
+                <div className={loadingStyles.loader__bar}></div>
+                <div className={loadingStyles.loader__bar}></div>
+                <div className={loadingStyles.loader__ball}></div>
+              </div>
+            </div>
+
+            <div className="text-3xl text-black mt-3">Loading</div>
+          </div>
+        </>
       )}
-      {isConnected && rollupRegistered === false && (
+      {isConnected && data === undefined && (
         <>
           <div
             className=" absolute top-5 right-5 "

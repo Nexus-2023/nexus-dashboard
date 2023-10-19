@@ -110,21 +110,21 @@ export const SideBar = () => {
         <BasicAccordion />
       </div>
       {/* <div className="space-x-4  flex  -ml-5 mt-[5rem] "> */}
-      <div className="space-x-4  flex  absolute  bottom-10 left-12 ">
+      <div className="space-x-4  flex  absolute  bottom-10 left-16 ">
         <div className="hover:scale-125  ease-in-out duration-300">
-          <Link href={"/"}>
+          <Link href={"https://twitter.com/_Nexus_Network"} target="_blank">
             <TwitterIcon sx={{ fontSize: 30 }} />
           </Link>
         </div>
 
         <div className="hover:scale-125 scal ease-in-out duration-300">
-          <Link href={"/"}>
+          <Link href={"https://nexusnetwork.co.in/"} target="_blank">
             <LanguageIcon sx={{ fontSize: 30 }} />
           </Link>
         </div>
-
+        {/* 
         <div className="hover:scale-125  ease-in-out duration-300">
-          <Link href={"/"}>
+          <Link href={"https://nexusnetwork.co.in/"}>
             <Image
               src={"/Images/discord.svg"}
               alt="discord"
@@ -133,7 +133,7 @@ export const SideBar = () => {
               className=" -mt-2  "
             />
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   )
