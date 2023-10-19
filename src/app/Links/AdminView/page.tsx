@@ -96,7 +96,7 @@ export default function Home() {
     try {
       if (nexusContract) {
         const txn = await nexusContract.changeStakingLimit(
-          Number(stakingLimit),
+          Number(stakingLimit) * 100,
           { gasLimit: 2200000 }
         )
         setaleartPendingOpen(true)
@@ -182,8 +182,6 @@ export default function Home() {
 
   return (
     <div className="  flex flex-col items-center justify-center   w-[83vw] container mx-auto">
-      {/* {isConnecting && <>C onnecting...</>} */}
-
       {aleartErrorOpen && (
         <>
           <Alert
@@ -198,7 +196,7 @@ export default function Home() {
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            sx={{ position: "absolute", top: "2rem" }}
+            sx={{ position: "absolute", top: "0.5rem" }}
           >
             Transaction Failed
           </Alert>
@@ -219,7 +217,7 @@ export default function Home() {
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            sx={{ position: "absolute", top: "2rem" }}
+            sx={{ position: "absolute", top: "0.5rem" }}
           >
             Transaction Successfull
           </Alert>
@@ -228,11 +226,15 @@ export default function Home() {
 
       {aleartPendingOpen && (
         <>
-          <Alert severity="warning" sx={{ position: "absolute", top: "2rem" }}>
+          <Alert
+            severity="warning"
+            sx={{ position: "absolute", top: "0.5rem" }}
+          >
             Transaction pending
           </Alert>
         </>
       )}
+
       {isConnected && data ? (
         <>
           <div
