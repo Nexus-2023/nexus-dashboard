@@ -73,7 +73,7 @@ const StyledButton2 = styled.button<ButtonProps2>`
   color: ${({ color }) => color || "white"};
 
   border-radius: 0.3rem;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   position: relative;

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { StyledButton1, StyledButton2 } from "@/components/button"
-import { PolygonTable1, PolygonTable2 } from "@/components/Table"
+import { Table1, Table2 } from "@/components/Table"
 import { useRef, useEffect } from "react"
 import anime from "animejs/lib/anime.es.js"
 
@@ -34,14 +34,19 @@ export default function Home() {
       </div>
 
       <div ref={el => (elementsRef.current[1] = el)} className=" opacity-0">
-        <PolygonTable1 />
+        <Table1 ethLocked={10000} stakingLimit={80} />
       </div>
 
       <div
         ref={el => (elementsRef.current[2] = el)}
         className=" opacity-0 w-[60vw]   flex justify-center items-center"
       >
-        <PolygonTable2 />
+        <Table2
+          ethStaked={8000}
+          noOfValidators={260}
+          Earning={230}
+          EPR={4.81}
+        />
       </div>
 
       <div ref={el => (elementsRef.current[3] = el)} className=" opacity-0">

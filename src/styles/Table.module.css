@@ -1,0 +1,25 @@
+ 
+ 
+ .table, .th  {
+  border: 1px solid #045192 !important;
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+}
+
+ 
+.td {
+  border: 1px solid white !important;
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+  
+  background-color: #0375C9 !important;
+  color: white !important;
+}
+
+.th {
+  border: 1px solid white;
+  background-color: #045192 !important; 
+  color: #ffffff !important;
+}

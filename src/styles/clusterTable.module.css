@@ -1,0 +1,36 @@
+ 
+.table , .th{
+    border: 2px solid #171515;
+    padding: 10px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .td {
+    border: 2px solid #171515;
+    padding: 10px;
+    text-align: center;
+    font-weight: 550;
+    background-color: white;
+    color: black;
+  }
+  
+  .th {
+    
+  
+    background-color: #171515;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .tr {
+
+  }
+
+  /* tr {
+    background-color: var(--primary);
+    color: white;
+  } */
+    
+   
+  
+ 

@@ -18,34 +18,47 @@ table {
   
 }
 
-table, th  {
-  border: 2px solid var(--secondary);
+/* table, th  {
+  border: 1px solid var(--secondary) !important;
   padding: 10px;
   text-align: center;
-  
+  font-weight: 500;
 }
 
  
 td {
-  border: 3px solid white;
+  border: 1px solid white !important;
   padding: 10px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
   
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--primary) !important;
+  color: white !important;
 }
 
 th {
-  background-color: var(--secondary);
-  color: #ffffff;
+  border: 1px solid white;
+  background-color: var(--secondary) !important; 
+  color: #ffffff !important;
 }
+
+  */
 
 body {
   font-family: 'Work Sans', sans-serif;
   padding: 0%;
   box-sizing: border-box;
 
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .radio-buttons {

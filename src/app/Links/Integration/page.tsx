@@ -7,9 +7,25 @@ import { IntegrationTable } from "@/components/Table"
 import { useRef, useEffect } from "react"
 import anime from "animejs/lib/anime.es.js"
 
+import loadingStyles from "../../../styles/loading.module.css"
+import tableStyles from "../../../styles/Table.module.css"
+import { GET_ALL_ROLLUP } from "@/app/(Queries)/graphQl"
+import { useQuery } from "@apollo/client/react"
 export default function Home() {
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
+  const elementsRef2 = useRef<(HTMLDivElement | null)[]>([])
+  const { loading, error, data } = useQuery(GET_ALL_ROLLUP)
 
+  if (loading === false) {
+    console.log("data = ", data)
+    console.log("error", error)
+
+    console.log("rollups = ", data.rollups)
+    console.log("loading  = ", loading)
+  }
+  // console.log("data.length = ", data.rollups.length)
+  // console.log("data.rollups[0]= ", data.rollups[0])
+  // console.log("data.rollups[0].stakingLimit = ", data.rollups[0].stakingLimit)
   useEffect(() => {
     if (elementsRef.current) {
       anime.timeline({ loop: false }).add({
@@ -22,6 +38,23 @@ export default function Home() {
     }
   }, [])
 
+  useEffect(() => {
+    if (
+      elementsRef2.current &&
+      elementsRef2.current.length > 0 &&
+      elementsRef2
+    ) {
+      const targets = elementsRef2.current.filter(element => element)
+      anime.timeline({ loop: false }).add({
+        targets: targets,
+        translateY: [-20, 0],
+        opacity: [0, 1],
+        duration: 1000,
+        delay: anime.stagger(250, { easing: "easeOutSine" }),
+      })
+    }
+  }, [loading])
+
   return (
     <div className="  flex flex-col items-center justify-center space-y-12  w-[83vw] container mx-auto">
       <div className="  flex flex-col w-full items-center justify-center mt-6">
@@ -32,21 +65,67 @@ export default function Home() {
           Integration Summary
         </h1>
       </div>
-      <div className=" flex space-x-8 flex-wrap  ">
-        <div ref={el => (elementsRef.current[1] = el)} className=" opacity-0">
-          <Card text={"Number of Rollups Registered"} numbers={3} />
-        </div>
-        <div ref={el => (elementsRef.current[2] = el)} className=" opacity-0">
-          <Card text={"Eth Staked "} numbers={3200} />
-        </div>
-        <div ref={el => (elementsRef.current[3] = el)} className=" opacity-0">
-          <Card text={"Earnings (Eth)"} numbers={1000} />
-        </div>
-      </div>
 
-      <div ref={el => (elementsRef.current[4] = el)} className=" opacity-0">
-        <IntegrationTable />
-      </div>
+      {loading ? (
+        <>
+          <div className={loadingStyles.loader}>
+            <div className={loadingStyles.loader__bar}></div>
+            <div className={loadingStyles.loader__bar}></div>
+            <div className={loadingStyles.loader__bar}></div>
+            <div className={loadingStyles.loader__bar}></div>
+            <div className={loadingStyles.loader__bar}></div>
+            <div className={loadingStyles.loader__ball}></div>
+          </div>
+        </>
+      ) : (
+        <>
+          {" "}
+          <div className=" flex space-x-8 flex-wrap  ">
+            <div ref={el => (elementsRef2.current[0] = el)} className=" ">
+              <Card
+                text={"Number of Rollups Registered"}
+                numbers={data.rollups.length}
+              />
+            </div>
+            <div ref={el => (elementsRef2.current[1] = el)} className=" ">
+              <Card text={"Eth Staked "} numbers={3200} />
+            </div>
+            <div ref={el => (elementsRef2.current[2] = el)} className=" ">
+              <Card text={"Earnings (Eth)"} numbers={1000} />
+            </div>
+          </div>
+          <div ref={el => (elementsRef2.current[3] = el)} className="mb-12">
+            <table className={tableStyles.table}>
+              <thead>
+                <tr>
+                  <th className={tableStyles.th}>Index</th>
+                  <th className={tableStyles.th}>Rollup</th>
+                  <th className={tableStyles.th}>Number of Active Validator</th>
+                  <th className={tableStyles.th}>Total Eth Staked</th>
+                  <th className={tableStyles.th}>Staking Limit</th>
+                  <th className={tableStyles.th}>Eth Earned</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.rollups.map((rollup: any, index: number) => (
+                  <tr key={index}>
+                    <td className={tableStyles.td}>{index}</td>
+                    <td className={tableStyles.td}>{rollup.name || "N/A"}</td>
+                    <td className={tableStyles.td}>{rollup.validatorCount}</td>
+                    <td className={tableStyles.td}>{rollup.rewards}</td>
+                    <td className={tableStyles.td}>
+                      {" "}
+                      {rollup.stakingLimit / 100}%
+                    </td>
+                    <td className={tableStyles.td}>{"1 ETH"}</td>{" "}
+                    {/* Eth Earned is not provided in the GraphQL response */}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   )
 }
