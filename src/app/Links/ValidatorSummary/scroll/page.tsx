@@ -73,7 +73,7 @@ export default function Home() {
           <table className={styles2.table2}>
             <thead>
               <tr>
-                <th className={styles2.th2}>Metri</th>
+                <th className={styles2.th2}>Metric</th>
                 <th className={styles2.th2}>Value</th>
               </tr>
             </thead>
