@@ -23,9 +23,7 @@ export default function Home() {
     console.log("rollups = ", data.rollups)
     console.log("loading  = ", loading)
   }
-  // console.log("data.length = ", data.rollups.length)
-  // console.log("data.rollups[0]= ", data.rollups[0])
-  // console.log("data.rollups[0].stakingLimit = ", data.rollups[0].stakingLimit)
+
   useEffect(() => {
     if (elementsRef.current) {
       anime.timeline({ loop: false }).add({
@@ -109,7 +107,7 @@ export default function Home() {
               <tbody>
                 {data.rollups.map((rollup: any, index: number) => (
                   <tr key={index}>
-                    <td className={tableStyles.td}>{index}</td>
+                    <td className={tableStyles.td}>{index + 1}</td>
                     <td className={tableStyles.td}>{rollup.name || "N/A"}</td>
                     <td className={tableStyles.td}>{rollup.validatorCount}</td>
                     <td className={tableStyles.td}>{rollup.rewards}</td>

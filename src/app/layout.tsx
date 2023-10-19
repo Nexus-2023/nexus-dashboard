@@ -19,11 +19,14 @@ import {
   arbitrum,
   goerli,
   filecoinHyperspace,
+  polygonMumbai,
   filecoin,
   base,
   zora,
   scrollTestnet,
+  scrollSepolia,
   polygonZkEvm,
+  polygonZkEvmTestnet,
   mantleTestnet,
 } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
@@ -44,10 +47,6 @@ const defaultChains = [
     ...mainnet,
   },
   { ...goerli },
-  {
-    ...filecoin,
-    iconUrl: "https://i.imgur.com/oo7FPwT.png",
-  },
 
   // {
   //   ...filecoinHyperspace,
@@ -55,12 +54,22 @@ const defaultChains = [
   // },
 
   { ...scrollTestnet, iconUrl: "https://i.imgur.com/MVlSJm7.png" },
+  { ...scrollSepolia, iconUrl: "https://i.imgur.com/MVlSJm7.png" },
+
   { ...mantleTestnet, iconUrl: "https://i.imgur.com/Gye7nB2.png" },
   {
-    ...polygonZkEvm,
+    ...polygonMumbai,
+    iconUrl: "https://i.imgur.com/Sq18UfT.png",
+  },
+  {
+    ...polygonZkEvmTestnet,
     iconUrl: "https://i.imgur.com/Sq18UfT.png",
   },
   { ...optimism },
+  {
+    ...filecoin,
+    iconUrl: "https://i.imgur.com/oo7FPwT.png",
+  },
 
   { ...arbitrum },
   { ...base },
