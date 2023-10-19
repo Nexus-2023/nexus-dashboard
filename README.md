@@ -44,5 +44,8 @@ npm run dev
 ```
 For detailed setup and deployment instructions, please refer to the project's documentation.
  
+## Contacts
+
+Website : https://www.nexusnetwork.co.in/
  
- 
+Twitter : https://twitter.com/_Nexus_Network
