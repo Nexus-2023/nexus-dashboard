@@ -9,9 +9,9 @@ const IntegrationTable = () => {
           <tr>
             <th className={styles2.th}>Rollup</th>
             <th className={styles2.th}>Number of Active Validator</th>
-            <th className={styles2.th}>Total Eth Staked</th>
+            <th className={styles2.th}>Total ETH Staked</th>
             <th className={styles2.th}>Staking Limit</th>
-            <th className={styles2.th}>Eth Earned</th>
+            <th className={styles2.th}>ETH Earned</th>
           </tr>
         </thead>
         <tbody>
@@ -125,7 +125,7 @@ const Table1: React.FC<Table1Props> = ({ ethLocked, stakingLimit }) => {
   return (
     <div className="flex items-center text-white font-medium px-4 py-4 text-lg   ">
       <div className=" bg-inter h-32 justify-center items-center flex p-4  ">
-        <p>Layer 2 Parameters</p>
+        <p>Rollup Parameters</p>
       </div>
 
       <div className="flex flex-col bg-primary space-y-4 h-32   border-b-white    ">

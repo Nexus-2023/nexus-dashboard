@@ -89,7 +89,7 @@ export const SideBar = () => {
         <Link href={"/Links/RegisterRollup"}>
           <h1 className="text-md   px-4 py-2 hover:text-primary hover:bg-white ease-in-out duration-300 rounded-md">
             {" "}
-            Register Rollups
+            Register Rollup
           </h1>
         </Link>
 

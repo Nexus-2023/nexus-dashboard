@@ -43,7 +43,7 @@ export default function Home() {
       >
         <Table2
           ethStaked={8000}
-          noOfValidators={260}
+          noOfValidators={250}
           Earning={230}
           EPR={4.81}
         />
@@ -62,7 +62,7 @@ export default function Home() {
           className=" font-thin w-9/12 mt-4"
           ref={el => (elementsRef.current[4] = el)}
         >
-          Note: These numbers are static and are shown for demo purposes only
+          Note: This is a static page to showcase the metrics that will be tracked. The numbers are not being updated
         </p>
       </div>
     </div>
