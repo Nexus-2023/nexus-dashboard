@@ -49,10 +49,10 @@ export default function Home() {
       </div>
 
       <div
-        className="bg-gray-300  w-[50vw] flex px-5 py-2  h-[50vh] space-x-12 justify-center items-center mt-5 opacity-80"
+        className="bg-gray-300  w-[50vw] flex px-5 py-2  h-[50vh] space-x-12 justify-center items-center mt-5 "
         ref={el => (elementsRef.current[4] = el)}
       >
-        <div className="flex flex-col scale-110">
+        <div className="flex flex-col scale-110  opacity-75">
           <div className="bg-inter text-white px-4 py-2">
             Performance Metrics
           </div>
@@ -69,7 +69,7 @@ export default function Home() {
           <div className="bg-white text-black px-4 py-2">Withdrawl Status</div>
         </div>
 
-        <div className="scale-90">
+        <div className="scale-90  opacity-75">
           <table className={styles2.table2}>
             <thead>
               <tr>
