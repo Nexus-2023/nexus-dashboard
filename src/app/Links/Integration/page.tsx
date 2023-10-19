@@ -4,7 +4,7 @@ import Image from "next/image"
 import { StyledButton1, StyledButton2 } from "@/components/button"
 import { Card } from "@/components/Card"
 import { IntegrationTable } from "@/components/Table"
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 
 import loadingStyles from "../../../styles/loading.module.css"
@@ -14,15 +14,35 @@ import { useQuery } from "@apollo/client/react"
 export default function Home() {
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
   const elementsRef2 = useRef<(HTMLDivElement | null)[]>([])
+  const [totalEthStaked, setTotalEthStaked] = useState<number>(0)
+  const [totalEthEarned, setTotalEthEarned] = useState<number>(0)
   const { loading, error, data } = useQuery(GET_ALL_ROLLUP)
 
-  if (loading === false) {
-    console.log("data = ", data)
-    console.log("error", error)
+  let total: any
+  let result: any
 
-    console.log("rollups = ", data.rollups)
-    console.log("loading  = ", loading)
-  }
+  useEffect(() => {
+    if (loading === false) {
+      for (let i = 0; i < data.rollups.length; i++) {
+        total = +data.rollups[i].validatorCount
+      }
+      if (total) {
+        result = total * 32
+      }
+
+      setTotalEthStaked(result)
+      setTotalEthEarned(total)
+    }
+  }, [loading, data])
+
+  // if (loading === false) {
+  //   console.log("data = ", data)
+  //   console.log("error", error)
+  //   // console.log("data.legth = ", data.length)
+  //   // console.log("data.rollups.length = ", data.rollups.length)
+  //   // console.log("rollups = ", data.rollups)
+  //   // console.log("loading  = ", loading)
+  // }
 
   useEffect(() => {
     if (elementsRef.current) {
@@ -86,10 +106,10 @@ export default function Home() {
               />
             </div>
             <div ref={el => (elementsRef2.current[1] = el)} className=" ">
-              <Card text={"Eth Staked "} numbers={3200} />
+              <Card text={"Eth Staked "} numbers={totalEthStaked} />
             </div>
             <div ref={el => (elementsRef2.current[2] = el)} className=" ">
-              <Card text={"Earnings (Eth)"} numbers={1000} />
+              <Card text={"Earnings (Eth)"} numbers={totalEthEarned} />
             </div>
           </div>
           <div ref={el => (elementsRef2.current[3] = el)} className="mb-12">
@@ -110,12 +130,16 @@ export default function Home() {
                     <td className={tableStyles.td}>{index + 1}</td>
                     <td className={tableStyles.td}>{rollup.name || "N/A"}</td>
                     <td className={tableStyles.td}>{rollup.validatorCount}</td>
-                    <td className={tableStyles.td}>{rollup.rewards}</td>
+                    <td className={tableStyles.td}>
+                      {rollup.validatorCount * 32} ETH
+                    </td>
                     <td className={tableStyles.td}>
                       {" "}
                       {rollup.stakingLimit / 100}%
                     </td>
-                    <td className={tableStyles.td}>{"1 ETH"}</td>{" "}
+                    <td className={tableStyles.td}>
+                      {rollup.validatorCount} ETH
+                    </td>{" "}
                     {/* Eth Earned is not provided in the GraphQL response */}
                   </tr>
                 ))}

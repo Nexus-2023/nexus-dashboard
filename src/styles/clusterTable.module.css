@@ -26,11 +26,39 @@
 
   }
 
-  /* tr {
-    background-color: var(--primary);
-    color: white;
-  } */
+ 
     
-   
+    
+.table2  {
+  border: none;
+  padding: 10px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.td2 {
+  border: 1px solid #171515;
+  padding: 10px;
+  text-align: center;
+  font-weight: 400;
+  background-color: white;
+  color: black;
+}
+
+.th2 {
+  
+  /* border: 1px solid #171515; */
+  border: none;
+  padding: 10px;
+  text-align: center;
+  font-weight: 400;
+  background-color: #126BB5;
+  color: #ffffff;
+  font-weight: 600;
+}
+.tr2 {
+
+}
+
   
  
