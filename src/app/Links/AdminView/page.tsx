@@ -24,11 +24,12 @@ import Alert from "@mui/material/Alert"
 import CloseIcon from "@mui/icons-material/Close"
 import { InputAdornment } from "@mui/material"
 import PercentIcon from "@mui/icons-material/Percent"
+
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
   // const [rollupRegistered, setrollupRegistered] = useState(false)
   const [rollupRegistered, setrollupRegistered] = useState(true)
-  const [rewardAddress, setrewardAddress] = useState("0x")
+  const router = useRouter()
   const [stakingLimit, setstakingLimit] = useState(0.01)
   const [aleartErrorOpen, setaleartErrorOpen] = useState(false)
   const [aleartPendingOpen, setaleartPendingOpen] = useState(false)
@@ -67,14 +68,7 @@ export default function Home() {
   if (loading) {
     console.log("user data", data)
   }
-  // console.log("graph error ", error)
 
-  // if (isConnected) {
-  // }
-
-  const handlerewardAddress = (e: any) => {
-    setrewardAddress(e.target.value)
-  }
   const handlestakingLimit = (e: any) => {
     if (
       e.target.value === "" ||
@@ -107,6 +101,8 @@ export default function Home() {
         console.log("Minting...", txn.hash)
 
         console.log("Minted -- ", txn.hash)
+        router.refresh()
+        setstakingLimit(stakingLimit)
       }
     } catch (e) {
       console.error("Transaction failed:", e)

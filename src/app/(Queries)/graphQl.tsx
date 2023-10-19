@@ -3,11 +3,13 @@ import { gql } from "@apollo/client"
 
 const GET_ALL_ROLLUP = gql`
   {
-    rollups {
+    rollups(where: { name_not: null }) {
       bridgeContract
+      clusterId
       id
       name
       rewards
+      slashing
       stakingLimit
       validatorCount
     }
