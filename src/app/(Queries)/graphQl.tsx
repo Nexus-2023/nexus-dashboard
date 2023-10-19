@@ -3,7 +3,7 @@ import { gql } from "@apollo/client"
 
 const GET_ALL_ROLLUP = gql`
   {
-    rollups(where: { name_not: null }) {
+    rollups(where: { validatorCount_gte: 1 }) {
       bridgeContract
       clusterId
       id

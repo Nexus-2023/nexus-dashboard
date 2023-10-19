@@ -19,7 +19,7 @@ import tableStyles from "../../../styles/Table.module.css"
 import { gql } from "@apollo/client"
 import loadingStyles from "../../../styles/loading.module.css"
 import IconButton from "@mui/material/IconButton"
-
+import Button from "@mui/material/Button"
 import Alert from "@mui/material/Alert"
 import CloseIcon from "@mui/icons-material/Close"
 import { InputAdornment } from "@mui/material"
@@ -380,9 +380,16 @@ export default function Home() {
               className="mt-12"
               ref={el => (elementsWalletRef.current[4] = el)}
             >
-              <StyledButton1 borderColor="#045192" backgroundColor="#045192">
+              <Button
+                variant="contained"
+                disabled
+                sx={{ backgroundColor: "#3A3A3A" }}
+              >
                 Claim Reward
-              </StyledButton1>
+              </Button>
+              {/* <StyledButton1 borderColor="#045192" backgroundColor="#045192">
+                Claim Reward
+              </StyledButton1> */}
             </div>
           </div>
         </>

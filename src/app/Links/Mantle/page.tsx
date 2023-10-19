@@ -56,6 +56,15 @@ export default function Home() {
           </StyledButton1>
         </Link>
       </div>
+
+      <div className="flex justify-center items-center w-[50vw]  ">
+        <p
+          className=" font-thin w-9/12 mt-4"
+          ref={el => (elementsRef.current[4] = el)}
+        >
+          Note: These numbers are static and are shown for demo purposes only
+        </p>
+      </div>
     </div>
   )
 }
