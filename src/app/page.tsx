@@ -35,7 +35,7 @@ export default function Home() {
           className="text-lg opacity-0"
           ref={el => (elementsRef.current[1] = el)}
         >
-          Welcome to Nexus , a plug and play staking Solution for L2
+          Welcome to Nexus Network - Plug & Play staking infrastructure for rollups
         </p>{" "}
       </div>
 
