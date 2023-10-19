@@ -43,9 +43,9 @@ export default function Home() {
         className=" flex space-x-8 flex-wrap  "
         ref={el => (elementsRef.current[3] = el)}
       >
-        <Card text={"Number of Validators"} numbers={20} />
-        <Card text={"Backward Looking APR% "} numbers={3200} />
-        <Card text={"Effectiveness Rating"} numbers={99} />
+        <Card text={"Number of Validators"} numbers={250} />
+        <Card text={"Backward Looking APR % "} numbers={4.81} />
+        <Card text={"Effectiveness Rating %"} numbers={99} />
       </div>
 
       <div
@@ -66,7 +66,7 @@ export default function Home() {
             Aggregate reward statistics
           </div>
           <div className="bg-white text-black px-4 py-2">Activation status</div>
-          <div className="bg-white text-black px-4 py-2">Withdrawl Status</div>
+          <div className="bg-white text-black px-4 py-2">Withdrawal Status</div>
         </div>
 
         <div className="scale-90  opacity-75">

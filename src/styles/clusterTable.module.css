@@ -33,14 +33,14 @@
   border: none;
   padding: 10px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .td2 {
   border: 1px solid #171515;
   padding: 10px;
   text-align: center;
-  font-weight: 550;
+  font-weight: 400;
   background-color: white;
   color: black;
 }
@@ -51,7 +51,7 @@
   border: none;
   padding: 10px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
   background-color: #126BB5;
   color: #ffffff;
   font-weight: 600;
