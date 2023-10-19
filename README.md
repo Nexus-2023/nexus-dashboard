@@ -1,3 +1,4 @@
+ 
 # Nexus Network - Pluggable Staking Solution for Layer 2 Blockchains
 ![image](https://github.com/umershaikh123/nexus-dashboard/assets/42178214/a8e7f352-fcfa-439d-8fc7-b4a6584602c5)
 
@@ -42,5 +43,6 @@ cd nexus-dashboard
 npm run dev
 ```
 For detailed setup and deployment instructions, please refer to the project's documentation.
+ 
  
  
