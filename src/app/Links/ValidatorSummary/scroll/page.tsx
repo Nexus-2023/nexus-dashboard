@@ -35,7 +35,7 @@ export default function Home() {
           className="text-md font-black "
           ref={el => (elementsRef.current[1] = el)}
         >
-          Validator's Performance
+          Validator Performance
         </h1>
       </div>
 
@@ -104,7 +104,7 @@ export default function Home() {
           className=" font-thin w-9/12 mt-4"
           ref={el => (elementsRef.current[5] = el)}
         >
-          Note: These numbers are static and are shown for demo purposes only
+          Note: This is a static page to showcase the metrics that will be tracked. The numbers are not being updated
         </p>
       </div>
     </div>

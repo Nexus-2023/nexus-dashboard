@@ -114,10 +114,10 @@ export default function Home() {
               />
             </div>
             <div ref={el => (elementsRef2.current[1] = el)} className=" ">
-              <Card text={"Eth Staked "} numbers={totalEthStaked} />
+              <Card text={"ETH Staked "} numbers={totalEthStaked} />
             </div>
             <div ref={el => (elementsRef2.current[2] = el)} className=" ">
-              <Card text={"Earnings (Eth)"} numbers={totalEthEarned} />
+              <Card text={"Earnings (ETH)"} numbers={totalEthEarned} />
             </div>
           </div>
           <div ref={el => (elementsRef2.current[3] = el)} className="mb-12">
@@ -126,10 +126,10 @@ export default function Home() {
                 <tr>
                   <th className={tableStyles.th}>Index</th>
                   <th className={tableStyles.th}>Rollup</th>
-                  <th className={tableStyles.th}>Number of Active Validator</th>
-                  <th className={tableStyles.th}>Total Eth Staked</th>
+                  <th className={tableStyles.th}>Number of Active Validators</th>
+                  <th className={tableStyles.th}>Total ETH Staked</th>
                   <th className={tableStyles.th}>Staking Limit</th>
-                  <th className={tableStyles.th}>Eth Earned</th>
+                  <th className={tableStyles.th}>ETH Earned</th>
                 </tr>
               </thead>
               <tbody>
@@ -148,7 +148,7 @@ export default function Home() {
                     <td className={tableStyles.td}>
                       {rollup.validatorCount} ETH
                     </td>{" "}
-                    {/* Eth Earned is not provided in the GraphQL response */}
+                    {/* ETH Earned is not provided in the GraphQL response */}
                   </tr>
                 ))}
               </tbody>
