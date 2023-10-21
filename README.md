@@ -1,12 +1,18 @@
  
 # Nexus Network - Pluggable Staking Solution for Layer 2 Blockchains
-![image](https://github.com/umershaikh123/nexus-dashboard/assets/42178214/a8e7f352-fcfa-439d-8fc7-b4a6584602c5)
+ 
+
+https://github.com/Nexus-2023/nexus-dashboard/assets/42178214/22744e78-419a-4841-81f8-23bede60d66b
+
+
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Key Features](#key-features)
 - [Overview](#overview)
 - [Getting Started](#getting-started)
+- [Links](#links)
+- [Contact](#contact)
  
 
 ## Introduction
@@ -43,8 +49,14 @@ cd nexus-dashboard
 npm run dev
 ```
 For detailed setup and deployment instructions, please refer to the project's documentation.
- 
-## Contacts
+
+## Links
+[Subgraph repo](https://github.com/Nexus-2023/subgraph)
+[subgraph playground](https://api.studio.thegraph.com/proxy/55430/nexus/version/latest/graphql?query=%0A++++%23%0A++++%23+Welcome+to+The+GraphiQL%0A++++%23%0A++++%23+GraphiQL+is+an+in-browser+tool+for+writing%2C+validating%2C+and%0A++++%23+testing+GraphQL+queries.%0A++++%23%0A++++%23+Type+queries+into+this+side+of+the+screen%2C+and+you+will+see+intelligent%0A++++%23+typeaheads+aware+of+the+current+GraphQL+type+schema+and+live+syntax+and%0A++++%23+validation+errors+highlighted+within+the+text.%0A++++%23%0A++++%23+GraphQL+queries+typically+start+with+a+%22%7B%22+character.+Lines+that+start%0A++++%23+with+a+%23+are+ignored.%0A++++%23%0A++++%23+An+example+GraphQL+query+might+look+like%3A%0A++++%23%0A++++%23+++++%7B%0A++++%23+++++++field%28arg%3A+%22value%22%29+%7B%0A++++%23+++++++++subField%0A++++%23+++++++%7D%0A++++%23+++++%7D%0A++++%23%0A++++%23+Keyboard+shortcuts%3A%0A++++%23%0A++++%23++Prettify+Query%3A++Shift-Ctrl-P+%28or+press+the+prettify+button+above%29%0A++++%23%0A++++%23+++++Merge+Query%3A++Shift-Ctrl-M+%28or+press+the+merge+button+above%29%0A++++%23%0A++++%23+++++++Run+Query%3A++Ctrl-Enter+%28or+press+the+play+button+above%29%0A++++%23%0A++++%23+++Auto+Complete%3A++Ctrl-Space+%28or+just+start+typing%29%0A++++%23%0A++) 
+
+[Smart Contracts repo](https://github.com/Nexus-2023/Nexus-Contracts/tree/nexus/ethOnline)
+
+## Contact
 
 Website : https://www.nexusnetwork.co.in/
  
