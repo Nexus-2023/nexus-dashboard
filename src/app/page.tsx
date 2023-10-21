@@ -35,7 +35,8 @@ export default function Home() {
           className="text-lg opacity-0"
           ref={el => (elementsRef.current[1] = el)}
         >
-          Welcome to Nexus Network - Plug & Play staking infrastructure for rollups
+          Welcome to Nexus Network - Plug & Play staking infrastructure for
+          rollups
         </p>{" "}
       </div>
 
@@ -46,7 +47,7 @@ export default function Home() {
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/BgCgauWVTs0?si=Dwo48KuAvSThBBdK"
+          src="https://www.youtube.com/embed/WeCImlAqAdQ?si=wlnGa08QSMBMFkVa"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
