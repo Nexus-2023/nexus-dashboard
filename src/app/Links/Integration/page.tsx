@@ -18,13 +18,16 @@ export default function Home() {
   const [totalEthEarned, setTotalEthEarned] = useState<number>(0)
   const { loading, error, data } = useQuery(GET_ALL_ROLLUP)
 
-  let total: any
+  let total: any = 0
   let result: any
 
   useEffect(() => {
     if (loading === false) {
+      console.log("data.rollups.length", data.rollups.length)
+
       for (let i = 0; i < data.rollups.length; i++) {
-        total = +data.rollups[i].validatorCount
+        total += data.rollups[i].validatorCount
+        console.log("total", total)
       }
       if (total) {
         result = total * 32
@@ -33,6 +36,11 @@ export default function Home() {
       setTotalEthStaked(result)
       setTotalEthEarned(total)
     }
+
+    console.log("result", result)
+    // console.log("total", total)
+    console.log("totalEthEarned", totalEthEarned)
+    console.log("totalEthStaked", totalEthStaked)
   }, [loading, data])
 
   // if (loading === false) {
