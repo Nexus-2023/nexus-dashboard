@@ -31,4 +31,20 @@ const GET_USER_ROLLUP = gql`
   }
 `
 
-export { GET_ALL_ROLLUP, GET_USER_ROLLUP }
+const GET_ALL_ROLLUPS = gql`
+  {
+    rollups {
+      bridgeContract
+      clusterId
+      executionRewards
+      id
+      name
+      nexusFeePercentage
+      slashing
+      stakingLimit
+      validatorCount
+    }
+  }
+`
+
+export { GET_ALL_ROLLUP, GET_USER_ROLLUP, GET_ALL_ROLLUPS }

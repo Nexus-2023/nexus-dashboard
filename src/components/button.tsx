@@ -14,8 +14,8 @@ interface ButtonProps2 {
 }
 
 const StyledButton1 = styled.button<ButtonProps>`
-  font-size: 14px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   display: inline-block;
   text-align: center;

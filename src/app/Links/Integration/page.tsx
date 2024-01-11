@@ -9,14 +9,21 @@ import anime from "animejs/lib/anime.es.js"
 
 import loadingStyles from "../../../styles/loading.module.css"
 import tableStyles from "../../../styles/Table.module.css"
-import { GET_ALL_ROLLUP } from "@/app/(Queries)/graphQl"
-import { useQuery } from "@apollo/client/react"
+// import { GET_ALL_ROLLUP } from "@/app/(Queries)/graphQl"
+import { GET_ALL_ROLLUPS } from "@/app/(Queries)/graphQl"
+import { useQuery, gql } from "@apollo/client"
+
 export default function Home() {
   const elementsRef = useRef<(HTMLDivElement | null)[]>([])
   const elementsRef2 = useRef<(HTMLDivElement | null)[]>([])
   const [totalEthStaked, setTotalEthStaked] = useState<number>(0)
   const [totalEthEarned, setTotalEthEarned] = useState<number>(0)
-  const { loading, error, data } = useQuery(GET_ALL_ROLLUP)
+
+  const { loading, error, data } = useQuery(GET_ALL_ROLLUPS)
+
+  if (loading == false) {
+    console.log("rollup data ", data)
+  }
 
   let total: any = 0
   let result: any
@@ -110,14 +117,14 @@ export default function Home() {
             <div ref={el => (elementsRef2.current[0] = el)} className=" ">
               <Card
                 text={"Number of Rollups Registered"}
-                numbers={data.rollups.length}
+                numbers={data.rollups.length || 0}
               />
             </div>
             <div ref={el => (elementsRef2.current[1] = el)} className=" ">
-              <Card text={"ETH Staked "} numbers={totalEthStaked} />
+              <Card text={"ETH Staked "} numbers={totalEthStaked || 0} />
             </div>
             <div ref={el => (elementsRef2.current[2] = el)} className=" ">
-              <Card text={"Earnings (ETH)"} numbers={totalEthEarned} />
+              <Card text={"Earnings (ETH)"} numbers={totalEthEarned || 0} />
             </div>
           </div>
           <div ref={el => (elementsRef2.current[3] = el)} className="mb-12">
@@ -126,7 +133,9 @@ export default function Home() {
                 <tr>
                   <th className={tableStyles.th}>Index</th>
                   <th className={tableStyles.th}>Rollup</th>
-                  <th className={tableStyles.th}>Number of Active Validators</th>
+                  <th className={tableStyles.th}>
+                    Number of Active Validators
+                  </th>
                   <th className={tableStyles.th}>Total ETH Staked</th>
                   <th className={tableStyles.th}>Staking Limit</th>
                   <th className={tableStyles.th}>ETH Earned</th>
@@ -137,7 +146,9 @@ export default function Home() {
                   <tr key={index}>
                     <td className={tableStyles.td}>{index + 1}</td>
                     <td className={tableStyles.td}>{rollup.name || "N/A"}</td>
-                    <td className={tableStyles.td}>{rollup.validatorCount}</td>
+                    <td className={tableStyles.td}>
+                      {rollup.validatorCount || "NULL"}
+                    </td>
                     <td className={tableStyles.td}>
                       {rollup.validatorCount * 32} ETH
                     </td>
@@ -146,7 +157,7 @@ export default function Home() {
                       {rollup.stakingLimit / 100}%
                     </td>
                     <td className={tableStyles.td}>
-                      {rollup.validatorCount} ETH
+                      {rollup.validatorCount || "0"} ETH
                     </td>{" "}
                     {/* ETH Earned is not provided in the GraphQL response */}
                   </tr>

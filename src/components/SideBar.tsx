@@ -73,13 +73,13 @@ export function BasicAccordion() {
 export const SideBar = () => {
   return (
     <div className="bg-primary text-white relative  font-semibold   min-w-full  w-64  h-[100vh] min-h-full flex-col flex   items-center">
-      <div>
+      <div className="p-8">
         <Link href={"/"}>
           <Image
-            src="/Images/Nexeslogo.png"
+            src="/Images/nexusLogo1.png"
             alt="logo"
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             className="-ml-2 mt-5"
           />
         </Link>
